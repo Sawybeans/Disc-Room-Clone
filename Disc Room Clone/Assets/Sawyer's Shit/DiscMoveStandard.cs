@@ -53,9 +53,8 @@ public class DiscMoveStandard : MonoBehaviour
         //If the top or bottom rays collide with a wall, flip the y speed
         //If the right or left rays collide with a wall, flip the x speed
 
-        Ray rightRay = new Ray(transform.position, Vector2.right);
-        Debug.DrawRay(rightRay.origin, rightRay.direction, Color.white);
-        RaycastHit2D hitRight = Physics2D.Raycast(rightRay.origin, rightRay.direction, rayDist, wallMask);
+        if (bounceTimer < 0f)
+        {
 
         if (Physics2D.Raycast(rightRay.origin, rightRay.direction, rayDist))
         {
@@ -68,9 +67,9 @@ public class DiscMoveStandard : MonoBehaviour
             
         }
 
-        Ray leftRay = new Ray(transform.position, Vector2.left);
-        Debug.DrawRay(leftRay.origin, leftRay.direction, Color.white);
-        RaycastHit2D hitLeft = Physics2D.Raycast(leftRay.origin, leftRay.direction, rayDist, wallMask);
+            Ray leftRay = new Ray(transform.position, Vector2.left);
+            Debug.DrawRay(leftRay.origin, leftRay.direction, Color.white);
+            RaycastHit2D hitLeft = Physics2D.Raycast(leftRay.origin, leftRay.direction, rayDist, wallMask);
 
         if (Physics2D.Raycast(leftRay.origin, leftRay.direction, rayDist))
         {
@@ -84,9 +83,9 @@ public class DiscMoveStandard : MonoBehaviour
             
         }
 
-        Ray topRay = new Ray(transform.position, Vector2.up);
-        Debug.DrawRay(topRay.origin, topRay.direction, Color.white);
-        RaycastHit2D hitTop = Physics2D.Raycast(topRay.origin, topRay.direction, rayDist, wallMask);
+            Ray topRay = new Ray(transform.position, Vector2.up);
+            Debug.DrawRay(topRay.origin, topRay.direction, Color.white);
+            RaycastHit2D hitTop = Physics2D.Raycast(topRay.origin, topRay.direction, rayDist, wallMask);
 
         if (Physics2D.Raycast(topRay.origin, topRay.direction, rayDist))
         {
@@ -101,9 +100,9 @@ public class DiscMoveStandard : MonoBehaviour
             
         }
 
-        Ray bottomRay = new Ray(transform.position, Vector2.down);
-        Debug.DrawRay(bottomRay.origin, bottomRay.direction, Color.white);
-        RaycastHit2D hitBottom = Physics2D.Raycast(bottomRay.origin, bottomRay.direction, rayDist, wallMask);
+            Ray bottomRay = new Ray(transform.position, Vector2.down);
+            Debug.DrawRay(bottomRay.origin, bottomRay.direction, Color.white);
+            RaycastHit2D hitBottom = Physics2D.Raycast(bottomRay.origin, bottomRay.direction, rayDist, wallMask);
 
         if (Physics2D.Raycast(bottomRay.origin, bottomRay.direction, rayDist))
         {
