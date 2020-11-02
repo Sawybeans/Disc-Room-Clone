@@ -14,27 +14,28 @@ public class DiscMoveStandard : MonoBehaviour
 
     public GameObject self;
 
-    public float freezeTimer;
+    public float moveTimer;
     public float bounceTimer;
 
     void Start()
     {
-        freezeTimer = 500f;
-        bounceTimer = 0f;
-
+        moveTimer = 500f;
         discSpeedX = 0f;
         discSpeedY = 0f;
+
+        bounceTimer = 0f;
     }
 
     void Update()
     {
-        //Stay frozen until freezeTimer hits 0
+        //Disc spawns in and can't move until the moveTimer runs out
+        //When the timer hits 0, the disc can start moving
 
-        if (freezeTimer > 0)
+        if (moveTimer > 0f)
         {
-            discSpeedX = 0;
-            discSpeedY = 0;
-            freezeTimer--;
+            discSpeedX = 0f;
+            discSpeedY = 0f;
+            moveTimer--;
         }
 
         else
@@ -50,64 +51,60 @@ public class DiscMoveStandard : MonoBehaviour
         if (bounceTimer < 0f)
         {
 
-        if (Physics2D.Raycast(rightRay.origin, rightRay.direction, rayDist))
-        {
-            if (bounceTimer == 0)
+            Ray rightRay = new Ray(transform.position, Vector2.right);
+            Debug.DrawRay(rightRay.origin, rightRay.direction, Color.white);
+            RaycastHit2D hitRight = Physics2D.Raycast(rightRay.origin, rightRay.direction, rayDist, wallMask);
+
+            if (Physics2D.Raycast(rightRay.origin, rightRay.direction, rayDist))
             {
-                discSpeedX *= -1;
-                bounceTimer = 10f;
+                if (hitRight.collider != null)
+                {
+                    discSpeedX *= -1;
+                    bounceTimer = 10f;
+                }
             }
-            
-        }
 
             Ray leftRay = new Ray(transform.position, Vector2.left);
             Debug.DrawRay(leftRay.origin, leftRay.direction, Color.white);
             RaycastHit2D hitLeft = Physics2D.Raycast(leftRay.origin, leftRay.direction, rayDist, wallMask);
 
-        if (Physics2D.Raycast(leftRay.origin, leftRay.direction, rayDist))
-        {
-
-            if (bounceTimer == 0)
+            if (Physics2D.Raycast(leftRay.origin, leftRay.direction, rayDist))
             {
-                discSpeedX *= -1;
-                bounceTimer = 10f;
+                if (hitLeft.collider != null)
+                {
+                    discSpeedX *= -1;
+                    bounceTimer = 10f;
+                }
             }
-            
-        }
 
             Ray topRay = new Ray(transform.position, Vector2.up);
             Debug.DrawRay(topRay.origin, topRay.direction, Color.white);
             RaycastHit2D hitTop = Physics2D.Raycast(topRay.origin, topRay.direction, rayDist, wallMask);
 
-        if (Physics2D.Raycast(topRay.origin, topRay.direction, rayDist))
-        {
-
-            if (bounceTimer == 0) { 
+            if (Physics2D.Raycast(topRay.origin, topRay.direction, rayDist))
+            {
                 if (hitTop.collider != null)
                 {
                     discSpeedY *= -1;
                     bounceTimer = 10f;
                 }
-
             }
-
-            
-        }
 
             Ray bottomRay = new Ray(transform.position, Vector2.down);
             Debug.DrawRay(bottomRay.origin, bottomRay.direction, Color.white);
             RaycastHit2D hitBottom = Physics2D.Raycast(bottomRay.origin, bottomRay.direction, rayDist, wallMask);
 
-        if (Physics2D.Raycast(bottomRay.origin, bottomRay.direction, rayDist))
-        {
-            if (bounceTimer == 0) { 
+            if (Physics2D.Raycast(bottomRay.origin, bottomRay.direction, rayDist))
+            {
                 if (hitBottom.collider != null)
                 {
                     discSpeedY *= -1;
                     bounceTimer = 10f;
                 }
             }
-            
+
+            bounceTimer--;
+
         }
 
 
