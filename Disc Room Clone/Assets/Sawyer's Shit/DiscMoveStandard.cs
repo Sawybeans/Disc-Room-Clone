@@ -70,7 +70,9 @@ public class DiscMoveStandard : MonoBehaviour
         Debug.DrawRay(rightRay.origin, rightRay.direction * rayDist, Color.white);
         RaycastHit2D hitRight = Physics2D.Raycast(rightRay.origin, rightRay.direction, rayDist, wallMask);
 
-            if (Physics2D.Raycast(rightRay.origin, rightRay.direction, rayDist))
+        if (Physics2D.Raycast(rightRay.origin, rightRay.direction, rayDist))
+        {
+            if (bounceTimer == 0)
             {
                 discSpeedX = -discSpeedGeneral * xRand;
                 bounceTimer = 10f;
@@ -83,8 +85,7 @@ public class DiscMoveStandard : MonoBehaviour
             if (Physics2D.Raycast(leftRay.origin, leftRay.direction, rayDist))
             {
 
-            
-            if (hitLeft.collider != null)
+            if (bounceTimer == 0)
             {
                 discSpeedX = discSpeedGeneral * xRand;
                 bounceTimer = 10f;
