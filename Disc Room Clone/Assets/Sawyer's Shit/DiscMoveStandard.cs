@@ -18,7 +18,7 @@ public class DiscMoveStandard : MonoBehaviour
 
     public GameObject self;
 
-    public float freezeTimer;
+    public float moveTimer;
     public float bounceTimer;
 
     public float discSpeedGeneral = 5f;
@@ -70,9 +70,11 @@ public class DiscMoveStandard : MonoBehaviour
         Debug.DrawRay(rightRay.origin, rightRay.direction * rayDist, Color.white);
         RaycastHit2D hitRight = Physics2D.Raycast(rightRay.origin, rightRay.direction, rayDist, wallMask);
 
-        if (Physics2D.Raycast(rightRay.origin, rightRay.direction, rayDist))
-        {
-            if (bounceTimer == 0)
+            Ray rightRay = new Ray(transform.position, Vector2.right);
+            Debug.DrawRay(rightRay.origin, rightRay.direction, Color.white);
+            RaycastHit2D hitRight = Physics2D.Raycast(rightRay.origin, rightRay.direction, rayDist, wallMask);
+
+            if (Physics2D.Raycast(rightRay.origin, rightRay.direction, rayDist))
             {
                 discSpeedX = -discSpeedGeneral * xRand;
                 bounceTimer = 10f;
@@ -83,9 +85,6 @@ public class DiscMoveStandard : MonoBehaviour
         RaycastHit2D hitLeft = Physics2D.Raycast(leftRay.origin, leftRay.direction, rayDist, wallMask);
 
             if (Physics2D.Raycast(leftRay.origin, leftRay.direction, rayDist))
-            {
-
-            if (bounceTimer == 0)
             {
                 discSpeedX = discSpeedGeneral * xRand;
                 bounceTimer = 10f;
@@ -121,6 +120,10 @@ public class DiscMoveStandard : MonoBehaviour
                 discSpeedY = discSpeedGeneral * yRand;
                 bounceTimer = 10f;
             }
+
+            bounceTimer--;
+
+        }
 
         if (canMove == true)
         {
