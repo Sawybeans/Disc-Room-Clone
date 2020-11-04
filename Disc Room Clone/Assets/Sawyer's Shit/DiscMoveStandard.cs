@@ -52,14 +52,14 @@ public class DiscMoveStandard : MonoBehaviour
 
         if (Physics2D.Raycast(rightRay.origin, rightRay.direction, rayDist))
         {
-            if (bounceTimer == 0)
+            
+            if (hitRight.collider != null)
             {
-                if (hitRight.collider != null)
-                {
-                    discSpeedX *= -1;
-                    bounceTimer = 10f;
-                }
+                discSpeedX *= -1;
+                bounceTimer = 10f;
             }
+            
+        }
 
             Ray leftRay = new Ray(transform.position, Vector2.left);
             Debug.DrawRay(leftRay.origin, leftRay.direction, Color.white);
@@ -68,14 +68,14 @@ public class DiscMoveStandard : MonoBehaviour
         if (Physics2D.Raycast(leftRay.origin, leftRay.direction, rayDist))
         {
 
-            if (bounceTimer == 0)
+            
+            if (hitLeft.collider != null)
             {
-                if (hitLeft.collider != null)
-                {
-                    discSpeedX *= -1;
-                    bounceTimer = 10f;
-                }
+                discSpeedX *= -1;
+                bounceTimer = 10f;
             }
+            
+        }
 
             Ray topRay = new Ray(transform.position, Vector2.up);
             Debug.DrawRay(topRay.origin, topRay.direction, Color.white);
@@ -84,14 +84,15 @@ public class DiscMoveStandard : MonoBehaviour
         if (Physics2D.Raycast(topRay.origin, topRay.direction, rayDist))
         {
 
-            if (bounceTimer == 0) { 
-                if (hitTop.collider != null)
-                {
-                    discSpeedY *= -1;
-                    bounceTimer = 10f;
-                }
-
+            
+            if (hitTop.collider != null)
+            {
+                discSpeedY *= -1;
+                bounceTimer = 10f;
             }
+
+            
+        }
 
             Ray bottomRay = new Ray(transform.position, Vector2.down);
             Debug.DrawRay(bottomRay.origin, bottomRay.direction, Color.white);
@@ -99,19 +100,15 @@ public class DiscMoveStandard : MonoBehaviour
 
         if (Physics2D.Raycast(bottomRay.origin, bottomRay.direction, rayDist))
         {
-            if (bounceTimer == 0) { 
-                if (hitBottom.collider != null)
-                {
-                    discSpeedY *= -1;
-                    bounceTimer = 10f;
-                }
+            
+            if (hitBottom.collider != null)
+            {
+                discSpeedY *= -1;
+                bounceTimer = 10f;
             }
-
-            bounceTimer--;
-
+            
         }
 
-        else { bounceTimer--; }
 
         //Always be moving on the X and Y axis
         thisRigidbody2d.velocity = new Vector3(discSpeedX, discSpeedY);
