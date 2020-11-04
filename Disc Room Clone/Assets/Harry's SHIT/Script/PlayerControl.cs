@@ -29,6 +29,7 @@ public class PlayerControl : MonoBehaviour
             {
                 print("UP");
                 playerAnim.SetBool("isUp",true);
+                playerAnim.SetBool("faceUp",false);
                 transform.Translate(0,runSpeed * Time.deltaTime,0);
             }
             
@@ -37,6 +38,7 @@ public class PlayerControl : MonoBehaviour
             {
                 print("DOWN");
                 playerAnim.SetBool("isDown",true);
+                playerAnim.SetBool("faceDown",false);
                 transform.Translate(0,-runSpeed * Time.deltaTime,0);
             }
             
@@ -45,6 +47,7 @@ public class PlayerControl : MonoBehaviour
             {
                 print("LEFT");
                 playerAnim.SetBool("isLeft",true);
+                playerAnim.SetBool("faceLeft",false);
                 transform.Translate(-runSpeed * Time.deltaTime,0,0);
             }
             
@@ -53,6 +56,7 @@ public class PlayerControl : MonoBehaviour
             {
                 print("RIGHT");
                 playerAnim.SetBool("isRight",true);
+                playerAnim.SetBool("faceRight",false);
                 transform.Translate(runSpeed * Time.deltaTime,0,0);
             }
             
@@ -61,18 +65,22 @@ public class PlayerControl : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.UpArrow))
             {
                 playerAnim.SetBool("isUp",false);
+                playerAnim.SetBool("faceUp",true);
             }
             if (Input.GetKeyUp(KeyCode.DownArrow))
             {
                 playerAnim.SetBool("isDown",false);
+                playerAnim.SetBool("faceDown",true);
             }
             if (Input.GetKeyUp(KeyCode.LeftArrow))
             {
                 playerAnim.SetBool("isLeft",false);
+                playerAnim.SetBool("faceLeft",true);
             }
             if (Input.GetKeyUp(KeyCode.RightArrow))
             {
                 playerAnim.SetBool("isRight",false);
+                playerAnim.SetBool("faceRight",true);
             }
         }
     }
