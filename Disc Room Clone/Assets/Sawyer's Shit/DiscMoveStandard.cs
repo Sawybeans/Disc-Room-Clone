@@ -70,9 +70,7 @@ public class DiscMoveStandard : MonoBehaviour
         Debug.DrawRay(rightRay.origin, rightRay.direction * rayDist, Color.white);
         RaycastHit2D hitRight = Physics2D.Raycast(rightRay.origin, rightRay.direction, rayDist, wallMask);
 
-        if (Physics2D.Raycast(rightRay.origin, rightRay.direction, rayDist))
-        {
-            if (bounceTimer == 0)
+            if (Physics2D.Raycast(rightRay.origin, rightRay.direction, rayDist))
             {
                 discSpeedX = -discSpeedGeneral * xRand;
                 bounceTimer = 10f;
@@ -82,8 +80,8 @@ public class DiscMoveStandard : MonoBehaviour
         Debug.DrawRay(leftRay.origin, leftRay.direction * rayDist, Color.white);
         RaycastHit2D hitLeft = Physics2D.Raycast(leftRay.origin, leftRay.direction, rayDist, wallMask);
 
-        if (Physics2D.Raycast(leftRay.origin, leftRay.direction, rayDist))
-        {
+            if (Physics2D.Raycast(leftRay.origin, leftRay.direction, rayDist))
+            {
 
             if (bounceTimer == 0)
             {
@@ -122,8 +120,10 @@ public class DiscMoveStandard : MonoBehaviour
                 bounceTimer = 10f;
             }
 
-            bounceTimer--;
+        else { bounceTimer--; }
 
+            //Always be moving on the X and Y axis
+            thisRigidbody2d.velocity = new Vector3(discSpeedX, discSpeedY);
         }
 
         if (canMove == true)
