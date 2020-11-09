@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UI;
 using UnityEngine;
 
 public class DiscMoveStandard : MonoBehaviour
@@ -32,6 +33,11 @@ public class DiscMoveStandard : MonoBehaviour
 
         if (freezeTimer > 0)
         {
+            Renderer r = self.GetComponent<Renderer>();
+            Color selfAlpha = r.material.color;
+
+            selfAlpha.a = 0.5f;
+
             discSpeedX = 0;
             discSpeedY = 0;
             freezeTimer--;
