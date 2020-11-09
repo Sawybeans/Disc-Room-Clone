@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UI;
 using UnityEngine;
 
-public class DiscMoveStandard : MonoBehaviour
+public class DiscMoveBig : MonoBehaviour
 {
 
     public float discSpeedX = 5f;
@@ -27,6 +26,7 @@ public class DiscMoveStandard : MonoBehaviour
         discSpeedY = 0f;
     }
 
+    // Update is called once per frame
     void Update()
     {
         //Stay frozen until freezeTimer hits 0
@@ -45,8 +45,8 @@ public class DiscMoveStandard : MonoBehaviour
 
         else
         {
-            discSpeedX = 5f;
-            discSpeedY = 5f;
+            discSpeedX = 2f;
+            discSpeedY = 2f;
         }
 
         //Create rays pointing to the top, bottom, left, and right sides of the object
@@ -59,13 +59,13 @@ public class DiscMoveStandard : MonoBehaviour
 
         if (Physics2D.Raycast(rightRay.origin, rightRay.direction, rayDist))
         {
-            
+
             if (hitRight.collider != null)
             {
                 discSpeedX *= -1;
                 bounceTimer = 10f;
             }
-            
+
         }
 
         Ray leftRay = new Ray(transform.position, Vector2.left);
@@ -75,13 +75,13 @@ public class DiscMoveStandard : MonoBehaviour
         if (Physics2D.Raycast(leftRay.origin, leftRay.direction, rayDist))
         {
 
-            
+
             if (hitLeft.collider != null)
             {
                 discSpeedX *= -1;
                 bounceTimer = 10f;
             }
-            
+
         }
 
         Ray topRay = new Ray(transform.position, Vector2.up);
@@ -91,14 +91,14 @@ public class DiscMoveStandard : MonoBehaviour
         if (Physics2D.Raycast(topRay.origin, topRay.direction, rayDist))
         {
 
-            
+
             if (hitTop.collider != null)
             {
                 discSpeedY *= -1;
                 bounceTimer = 10f;
             }
 
-            
+
         }
 
         Ray bottomRay = new Ray(transform.position, Vector2.down);
@@ -107,22 +107,17 @@ public class DiscMoveStandard : MonoBehaviour
 
         if (Physics2D.Raycast(bottomRay.origin, bottomRay.direction, rayDist))
         {
-            
+
             if (hitBottom.collider != null)
             {
                 discSpeedY *= -1;
                 bounceTimer = 10f;
             }
-            
+
         }
 
 
         //Always be moving on the X and Y axis
         thisRigidbody2d.velocity = new Vector3(discSpeedX, discSpeedY);
-    }
-
-    void FixedUpdate()
-    {
-
     }
 }
