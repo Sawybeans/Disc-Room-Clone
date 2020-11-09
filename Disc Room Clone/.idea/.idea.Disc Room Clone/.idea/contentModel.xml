@@ -12,7 +12,9 @@
           </e>
         </e>
         <e p="Sawyer's Shit" t="Include">
+          <e p="DiscMoveBig.cs" t="Include" />
           <e p="DiscMoveStandard.cs" t="Include" />
+          <e p="DiscMoveWalls.cs" t="Include" />
         </e>
       </e>
       <e p="Disc Room Clone.sln" t="IncludeFlat" />
