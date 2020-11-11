@@ -43,7 +43,7 @@ public class DiscMoveStandard : MonoBehaviour
 
         //Stay frozen until freezeTimer hits 0
 
-
+        
         if (freezeTimer > 0)
         {
             Renderer r = self.GetComponent<Renderer>();
@@ -59,7 +59,7 @@ public class DiscMoveStandard : MonoBehaviour
         {
             canMove = true;
         }
-
+        
 
 
         //Create rays pointing to the top, bottom, left, and right sides of the object
@@ -134,11 +134,11 @@ public class DiscMoveStandard : MonoBehaviour
             //Always be moving on the X and Y axis
             thisRigidbody2d.velocity = new Vector3(discSpeedX, discSpeedY);
         }
-
-
+        
+        
     }
+      
 
-
-
-
+   
+            
 }

@@ -160,7 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   discSpeedX: 5
   discSpeedY: 5
-  rayDist: 0.7
+  rayDist: 0.6
   xRand: 0
   yRand: 0
   thisRigidbody2d: {fileID: 185191445}
