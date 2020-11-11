@@ -17,18 +17,25 @@ public class DiscMoveBig : MonoBehaviour
     public float freezeTimer;
     public float bounceTimer;
 
+    public float discSpeedGeneral = 2f;
+
+    public bool canMove;
+
     void Start()
     {
         freezeTimer = 500f;
         bounceTimer = 0f;
+        canMove = false;
 
-        discSpeedX = 0f;
-        discSpeedY = 0f;
+        discSpeedX = discSpeedGeneral;
+        discSpeedY = discSpeedGeneral;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //VALID AS OF NOVEMBER 9th
+
         //Stay frozen until freezeTimer hits 0
 
         if (freezeTimer > 0)
@@ -37,24 +44,23 @@ public class DiscMoveBig : MonoBehaviour
             Color selfAlpha = r.material.color;
 
             selfAlpha.a = 0.5f;
-
-            discSpeedX = 0;
-            discSpeedY = 0;
             freezeTimer--;
+
+            canMove = false;
         }
 
-        else
+        if (freezeTimer <= 0)
         {
-            discSpeedX = 2f;
-            discSpeedY = 2f;
+            canMove = true;
         }
+
 
         //Create rays pointing to the top, bottom, left, and right sides of the object
         //If the top or bottom rays collide with a wall, flip the y speed
         //If the right or left rays collide with a wall, flip the x speed
 
         Ray rightRay = new Ray(transform.position, Vector2.right);
-        Debug.DrawRay(rightRay.origin, rightRay.direction, Color.white);
+        Debug.DrawRay(rightRay.origin, rightRay.direction * rayDist, Color.white);
         RaycastHit2D hitRight = Physics2D.Raycast(rightRay.origin, rightRay.direction, rayDist, wallMask);
 
         if (Physics2D.Raycast(rightRay.origin, rightRay.direction, rayDist))
@@ -62,14 +68,14 @@ public class DiscMoveBig : MonoBehaviour
 
             if (hitRight.collider != null)
             {
-                discSpeedX *= -1;
+                discSpeedX = -discSpeedGeneral;
                 bounceTimer = 10f;
             }
 
         }
 
         Ray leftRay = new Ray(transform.position, Vector2.left);
-        Debug.DrawRay(leftRay.origin, leftRay.direction, Color.white);
+        Debug.DrawRay(leftRay.origin, leftRay.direction * rayDist, Color.white);
         RaycastHit2D hitLeft = Physics2D.Raycast(leftRay.origin, leftRay.direction, rayDist, wallMask);
 
         if (Physics2D.Raycast(leftRay.origin, leftRay.direction, rayDist))
@@ -78,14 +84,14 @@ public class DiscMoveBig : MonoBehaviour
 
             if (hitLeft.collider != null)
             {
-                discSpeedX *= -1;
+                discSpeedX = discSpeedGeneral;
                 bounceTimer = 10f;
             }
 
         }
 
         Ray topRay = new Ray(transform.position, Vector2.up);
-        Debug.DrawRay(topRay.origin, topRay.direction, Color.white);
+        Debug.DrawRay(topRay.origin, topRay.direction * rayDist, Color.white);
         RaycastHit2D hitTop = Physics2D.Raycast(topRay.origin, topRay.direction, rayDist, wallMask);
 
         if (Physics2D.Raycast(topRay.origin, topRay.direction, rayDist))
@@ -94,7 +100,7 @@ public class DiscMoveBig : MonoBehaviour
 
             if (hitTop.collider != null)
             {
-                discSpeedY *= -1;
+                discSpeedY = -discSpeedGeneral;
                 bounceTimer = 10f;
             }
 
@@ -102,7 +108,7 @@ public class DiscMoveBig : MonoBehaviour
         }
 
         Ray bottomRay = new Ray(transform.position, Vector2.down);
-        Debug.DrawRay(bottomRay.origin, bottomRay.direction, Color.white);
+        Debug.DrawRay(bottomRay.origin, bottomRay.direction * rayDist, Color.white);
         RaycastHit2D hitBottom = Physics2D.Raycast(bottomRay.origin, bottomRay.direction, rayDist, wallMask);
 
         if (Physics2D.Raycast(bottomRay.origin, bottomRay.direction, rayDist))
@@ -110,14 +116,17 @@ public class DiscMoveBig : MonoBehaviour
 
             if (hitBottom.collider != null)
             {
-                discSpeedY *= -1;
+                discSpeedY = discSpeedGeneral;
                 bounceTimer = 10f;
             }
 
         }
 
-
-        //Always be moving on the X and Y axis
-        thisRigidbody2d.velocity = new Vector3(discSpeedX, discSpeedY);
+        if (canMove == true)
+        {
+            //Always be moving on the X and Y axis
+            thisRigidbody2d.velocity = new Vector3(discSpeedX, discSpeedY);
+        }
+        
     }
 }
