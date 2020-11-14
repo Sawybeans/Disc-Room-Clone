@@ -40,6 +40,8 @@ public class DiscMoveBig : MonoBehaviour
 
         if (freezeTimer > 0)
         {
+            self.GetComponent<CircleCollider2D>().enabled = false;
+
             Renderer r = self.GetComponent<Renderer>();
             Color selfAlpha = r.material.color;
 
@@ -51,6 +53,7 @@ public class DiscMoveBig : MonoBehaviour
 
         if (freezeTimer <= 0)
         {
+            self.GetComponent<CircleCollider2D>().enabled = true;
             canMove = true;
         }
 
