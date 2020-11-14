@@ -8,6 +8,8 @@
       <e p="Assets" t="Include">
         <e p="Harry's SHIT" t="Include">
           <e p="Script" t="Include">
+            <e p="DiscMoveStandards.cs" t="Include" />
+            <e p="DiscMoveWall.cs" t="Include" />
             <e p="PlayerControl.cs" t="Include" />
           </e>
         </e>
