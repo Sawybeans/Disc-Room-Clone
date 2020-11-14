@@ -8,21 +8,58 @@ public class PlayerControl : MonoBehaviour
     // IF ALIVE, THEN DO THE PLAYER BEHAVIORS
     //IF DEAD, CREATE THE BLOOD PREFAB, AND DESTROY CURRENT PLAYER PREFAB
     public bool alive;
+    //this is to restrict the use of x, once pressed x for dash, you have to press again for the next time,
+    public bool canPress;
     //Customizable player vars
     public float runSpeed;
-    public float dashSpeed;
+    float dashSpeed;
+    public float counter;
+    public float dashSpeeds;
+
+    public float dashTime;
     //Animation stuff
     public Animator playerAnim;
+    //which is myself
+    public GameObject player;
+    //public ParticleSystem bloodBurst;
     void Start()
     {
         //Initialize prefabs
         alive = true;
+        canPress = true;
     }
     
     void Update()
     {
+        //debug
+        print(alive);
+        
         if (alive)
         {
+            if (canPress && Input.GetKey(KeyCode.X))
+            {
+                counter += 1 * Time.deltaTime;
+                if (counter < dashTime)
+                {
+                    dashSpeed = dashSpeeds;
+                    player.GetComponent<CircleCollider2D>().enabled = false;
+                    this.GetComponent<SpriteRenderer>().color = Color.blue;
+                }
+                else
+                {
+                    dashSpeed = 0f;
+                    player.GetComponent<CircleCollider2D>().enabled = true;
+                    this.GetComponent<SpriteRenderer>().color = Color.white;
+                }
+            }
+            else
+            {
+                dashSpeed = 0;
+                player.GetComponent<CircleCollider2D>().enabled = true;
+                this.GetComponent<SpriteRenderer>().color = Color.white;
+                canPress = true;
+                counter = 0;
+            }
             //Basic player movements, under alive condition
             //UP
             if (Input.GetKey(KeyCode.UpArrow))
@@ -30,7 +67,7 @@ public class PlayerControl : MonoBehaviour
                 print("UP");
                 playerAnim.SetBool("isUp",true);
                 playerAnim.SetBool("faceUp",false);
-                transform.Translate(0,runSpeed * Time.deltaTime,0);
+                transform.Translate(0,(runSpeed + dashSpeed)* Time.deltaTime,0);
             }
             
             //DOWN
@@ -39,7 +76,7 @@ public class PlayerControl : MonoBehaviour
                 print("DOWN");
                 playerAnim.SetBool("isDown",true);
                 playerAnim.SetBool("faceDown",false);
-                transform.Translate(0,-runSpeed * Time.deltaTime,0);
+                transform.Translate(0,-(runSpeed + dashSpeed)* Time.deltaTime,0);
             }
             
             //LEFT
@@ -48,7 +85,7 @@ public class PlayerControl : MonoBehaviour
                 print("LEFT");
                 playerAnim.SetBool("isLeft",true);
                 playerAnim.SetBool("faceLeft",false);
-                transform.Translate(-runSpeed * Time.deltaTime,0,0);
+                transform.Translate(-(runSpeed + dashSpeed)* Time.deltaTime,0,0);
             }
             
             //RIGHT
@@ -57,7 +94,7 @@ public class PlayerControl : MonoBehaviour
                 print("RIGHT");
                 playerAnim.SetBool("isRight",true);
                 playerAnim.SetBool("faceRight",false);
-                transform.Translate(runSpeed * Time.deltaTime,0,0);
+                transform.Translate((runSpeed + dashSpeed)* Time.deltaTime,0,0);
             }
             
             
@@ -82,6 +119,18 @@ public class PlayerControl : MonoBehaviour
                 playerAnim.SetBool("isRight",false);
                 playerAnim.SetBool("faceRight",true);
             }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Disc")
+        {
+            alive = false;
+            this.GetComponent<Animator>().enabled = false;
+            this.GetComponent<SpriteRenderer>().color = Color.red;
+            Destroy(player);
+            //bloodBurst.Play();
         }
     }
 
