@@ -27,7 +27,7 @@ public class DiscMoveStandard : MonoBehaviour
 
     void Start()
     {
-        freezeTimer = 100f;
+        freezeTimer = 500f;
         canMove = false;
 
         xRand = Random.Range(0.5f, 1.5f);
@@ -46,6 +46,8 @@ public class DiscMoveStandard : MonoBehaviour
         
         if (freezeTimer > 0)
         {
+            self.GetComponent<CircleCollider2D>().enabled = false;
+
             Renderer r = self.GetComponent<Renderer>();
             Color selfAlpha = r.material.color;
 
@@ -57,6 +59,7 @@ public class DiscMoveStandard : MonoBehaviour
 
         if (freezeTimer <= 0)
         {
+            self.GetComponent<CircleCollider2D>().enabled = true;
             canMove = true;
         }
         
