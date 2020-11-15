@@ -34,7 +34,7 @@ public class DiscMoveWalls : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //Create rays pointing to the top, bottom, left, and right sides of the object
         //If the top ray collides, start moving to the left, if the left ray collides, start moving down, etc.

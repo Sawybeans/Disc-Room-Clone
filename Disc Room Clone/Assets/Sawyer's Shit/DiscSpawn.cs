@@ -22,7 +22,7 @@ public class DiscSpawn : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         if (counter < maxDisc)
@@ -42,7 +42,7 @@ public class DiscSpawn : MonoBehaviour
                     counter += 1;
                 }
 
-                if (newDisc >= 4)
+                if (newDisc >= 3)
                 {
                     Instantiate(discBig, new Vector3(0, 0, 0), Quaternion.identity);
                     counter += 1;

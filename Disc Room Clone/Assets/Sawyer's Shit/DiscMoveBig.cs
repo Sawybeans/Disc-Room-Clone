@@ -27,7 +27,7 @@ public class DiscMoveBig : MonoBehaviour
     private SpriteRenderer sR;
     void Start()
     {
-        freezeTimer = 500f;
+        freezeTimer = 60f;
         bounceTimer = 0f;
         canMove = false;
 
@@ -40,7 +40,7 @@ public class DiscMoveBig : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         
         transform.Rotate(0,0,15);

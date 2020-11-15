@@ -35,7 +35,7 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         //debug
-        print(alive);
+        //print(alive);
         if (this.transform.position.x > 4.22f)
         {
             this.transform.position = new Vector3(4.22f, this.transform.position.y,this.transform.position.z);

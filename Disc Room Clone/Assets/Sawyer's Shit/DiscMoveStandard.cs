@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UI;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class DiscMoveStandard : MonoBehaviour
@@ -28,7 +28,7 @@ public class DiscMoveStandard : MonoBehaviour
     private SpriteRenderer sR;
     void Start()
     {
-        freezeTimer = 500f;
+        freezeTimer = 60f;
         canMove = false;
 
         xRand = Random.Range(0.5f, 1.5f);
@@ -39,7 +39,7 @@ public class DiscMoveStandard : MonoBehaviour
         sR = self.GetComponent<SpriteRenderer>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         //VALID AS OF NOVEMBER 11th
 

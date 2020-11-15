@@ -14,6 +14,8 @@ public class Timer : MonoBehaviour
     {
         timerIsRunning = true;
         //timeText = gameObject.GetComponent<TextMeshProUGUI>();
+       
+
     }
     private void FixedUpdate()
     {

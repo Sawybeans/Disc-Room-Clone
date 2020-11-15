@@ -2947,7 +2947,7 @@ MonoBehaviour:
   discWall: {fileID: 8189666355355141235, guid: c6b252241b1d2ed4792b72136a268e58, type: 3}
   discTarget: {fileID: 7352920361574762998, guid: 9ec8dbd2f0918b1479fccffa46effca1, type: 3}
   spawn: 0
-  spawnTimer: 1600
+  spawnTimer: 400
   maxDisc: 5
 --- !u!4 &1798588861
 Transform:
