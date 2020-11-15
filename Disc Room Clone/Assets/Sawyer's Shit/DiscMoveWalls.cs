@@ -39,7 +39,7 @@ public class DiscMoveWalls : MonoBehaviour
         //Create rays pointing to the top, bottom, left, and right sides of the object
         //If the top ray collides, start moving to the left, if the left ray collides, start moving down, etc.
         //If a ray collides with a wall, destroy it until the disc is away from the wall
-
+        transform.Rotate(0,0,30);
         if (canGoRight == true)
         {
             discSpeedX = discSpeedGeneral;

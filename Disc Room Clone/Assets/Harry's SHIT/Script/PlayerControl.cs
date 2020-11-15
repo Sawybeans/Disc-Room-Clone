@@ -36,6 +36,22 @@ public class PlayerControl : MonoBehaviour
     {
         //debug
         print(alive);
+        if (this.transform.position.x > 4.22f)
+        {
+            this.transform.position = new Vector3(4.22f, this.transform.position.y,this.transform.position.z);
+        }
+        if (this.transform.position.x < -4.01f)
+        {
+            this.transform.position = new Vector3(-4.01f, this.transform.position.y,this.transform.position.z);
+        }
+        if (this.transform.position.y > 4.22f)
+        {
+            this.transform.position = new Vector3(this.transform.position.x,4.22f,this.transform.position.z);
+        }
+        if (this.transform.position.y < -4.01f)
+        {
+            this.transform.position = new Vector3(this.transform.position.x,-4.01f,this.transform.position.z);
+        }
         
         if (alive)
         {
@@ -137,6 +153,19 @@ public class PlayerControl : MonoBehaviour
             //bloodBurst.Play();
         }
     }
+
+//    void OnCollisionEnter2D(Collision2D other)
+//    {
+//        if (other.gameObject.tag == "Disc")
+//        {
+//            alive = false;
+//            this.GetComponent<Animator>().enabled = false;
+//            this.GetComponent<SpriteRenderer>().color = Color.red;
+//            Instantiate(bloodPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
+//            Destroy(player);
+//            //bloodBurst.Play();
+//        }
+//    }
 
     //All physics is here, currently I'm not sure if we need to use fixed update for collision detect or etc, so I'm commenting it out.
 //    void FixedUpdate()

@@ -25,6 +25,7 @@ public class DiscMoveStandard : MonoBehaviour
 
     public bool canMove;
 
+    private SpriteRenderer sR;
     void Start()
     {
         freezeTimer = 500f;
@@ -35,6 +36,7 @@ public class DiscMoveStandard : MonoBehaviour
 
         discSpeedX = discSpeedGeneral;
         discSpeedY = discSpeedGeneral;
+        sR = self.GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -43,15 +45,17 @@ public class DiscMoveStandard : MonoBehaviour
 
         //Stay frozen until freezeTimer hits 0
 
+        transform.Rotate(0,0,10);
         
         if (freezeTimer > 0)
         {
             self.GetComponent<CircleCollider2D>().enabled = false;
 
-            Renderer r = self.GetComponent<Renderer>();
-            Color selfAlpha = r.material.color;
-
-            selfAlpha.a = 0.5f;
+//            Renderer r = self.GetComponent<Renderer>();
+//            Color selfAlpha = r.material.color;
+//
+//            selfAlpha.a = 0.5f;
+            sR.color = new Color(sR.color.r,sR.color.g,sR.color.b,0.39f);
             freezeTimer--;
 
             canMove = false;
@@ -61,6 +65,7 @@ public class DiscMoveStandard : MonoBehaviour
         {
             self.GetComponent<CircleCollider2D>().enabled = true;
             canMove = true;
+            sR.color = new Color(sR.color.r,sR.color.g,sR.color.b,1f);
         }
         
 

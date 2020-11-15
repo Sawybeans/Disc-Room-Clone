@@ -51,7 +51,7 @@ MonoBehaviour:
   canPress: 0
   runSpeed: 5
   counter: 0
-  dashSpeeds: 5
+  dashSpeeds: 3.5
   dashTime: 1
   playerAnim: {fileID: 3053432751397596363}
   player: {fileID: 3053432751397596367}
@@ -136,7 +136,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.04}
