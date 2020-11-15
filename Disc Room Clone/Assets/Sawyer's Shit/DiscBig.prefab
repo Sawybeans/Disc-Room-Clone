@@ -74,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 907d5a8e3f11fc946bde609e6e4789bd, type: 3}
-  m_Color: {r: 0.98039216, g: 0, b: 0.61788183, a: 1}
+  m_Sprite: {fileID: 21300000, guid: b1b4fec6f1a189f44b6a57ad0eae0eac, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -137,6 +137,8 @@ MonoBehaviour:
   discSpeedX: 5
   discSpeedY: 5
   rayDist: 1.6
+  xRand: 0
+  yRand: 0
   thisRigidbody2d: {fileID: 4482707447945678770}
   wallMask:
     serializedVersion: 2

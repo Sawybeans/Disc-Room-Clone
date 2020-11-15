@@ -9,6 +9,9 @@ public class DiscMoveBig : MonoBehaviour
     public float discSpeedY = 5f;
     public float rayDist = 1f;
 
+    public float xRand;
+    public float yRand;
+    
     public Rigidbody2D thisRigidbody2d;
     public LayerMask wallMask;
 
@@ -21,31 +24,39 @@ public class DiscMoveBig : MonoBehaviour
 
     public bool canMove;
 
+    private SpriteRenderer sR;
     void Start()
     {
         freezeTimer = 500f;
         bounceTimer = 0f;
         canMove = false;
 
+        xRand = Random.Range(0.5f, 1.5f);
+        yRand = Random.Range(0.5f, 1.5f);
+        
         discSpeedX = discSpeedGeneral;
         discSpeedY = discSpeedGeneral;
+        sR = self.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        transform.Rotate(0,0,15);
         //VALID AS OF NOVEMBER 9th
 
         //Stay frozen until freezeTimer hits 0
 
         if (freezeTimer > 0)
         {
-            self.GetComponent<CircleCollider2D>().enabled = false;
-
-            Renderer r = self.GetComponent<Renderer>();
-            Color selfAlpha = r.material.color;
-
-            selfAlpha.a = 0.5f;
+//            self.GetComponent<CircleCollider2D>().enabled = false;
+//
+//            Renderer r = self.GetComponent<Renderer>();
+//            Color selfAlpha = r.material.color;
+//
+//            selfAlpha.a = 0.5f;
+            sR.color = new Color(sR.color.r,sR.color.g,sR.color.b,0.39f);
             freezeTimer--;
 
             canMove = false;
@@ -54,7 +65,9 @@ public class DiscMoveBig : MonoBehaviour
         if (freezeTimer <= 0)
         {
             self.GetComponent<CircleCollider2D>().enabled = true;
+            sR.color = new Color(sR.color.r,sR.color.g,sR.color.b,1f);
             canMove = true;
+
         }
 
 
@@ -71,7 +84,7 @@ public class DiscMoveBig : MonoBehaviour
 
             if (hitRight.collider != null)
             {
-                discSpeedX = -discSpeedGeneral;
+                discSpeedX = -discSpeedGeneral * xRand;
                 bounceTimer = 10f;
             }
 
@@ -87,7 +100,7 @@ public class DiscMoveBig : MonoBehaviour
 
             if (hitLeft.collider != null)
             {
-                discSpeedX = discSpeedGeneral;
+                discSpeedX = discSpeedGeneral * xRand;
                 bounceTimer = 10f;
             }
 
@@ -103,7 +116,7 @@ public class DiscMoveBig : MonoBehaviour
 
             if (hitTop.collider != null)
             {
-                discSpeedY = -discSpeedGeneral;
+                discSpeedY = -discSpeedGeneral * yRand;
                 bounceTimer = 10f;
             }
 
@@ -119,7 +132,7 @@ public class DiscMoveBig : MonoBehaviour
 
             if (hitBottom.collider != null)
             {
-                discSpeedY = discSpeedGeneral;
+                discSpeedY = discSpeedGeneral * yRand;
                 bounceTimer = 10f;
             }
 

@@ -12,6 +12,8 @@ public class DiscSpawn : MonoBehaviour
 
     public float spawn;
     public float spawnTimer = 800f;
+    public int maxDisc;
+    int counter;
 
     // Start is called before the first frame update
     void Start()
@@ -22,26 +24,32 @@ public class DiscSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (spawn > 0)
-        {
-            spawn--;
-        }
 
-        if (spawn == 0)
+        if (counter < maxDisc)
         {
-            int newDisc = Random.Range(0, 5);
-
-            if (newDisc == 0)
+            if (spawn > 0)
             {
-                Instantiate(discStandard, new Vector3(0, 0, 0), Quaternion.identity);
+                spawn--;
             }
 
-            if (newDisc >= 1)
+            if (spawn == 0)
             {
-                Instantiate(discBig, new Vector3(0, 0, 0), Quaternion.identity);
-            }
+                int newDisc = Random.Range(0, 5);
 
-            spawn = spawnTimer;
+                if (newDisc <= 2)
+                {
+                    Instantiate(discStandard, new Vector3(0, 0, 0), Quaternion.identity);
+                    counter += 1;
+                }
+
+                if (newDisc >= 4)
+                {
+                    Instantiate(discBig, new Vector3(0, 0, 0), Quaternion.identity);
+                    counter += 1;
+                }
+
+                spawn = spawnTimer;
+            }
         }
     }
 }
