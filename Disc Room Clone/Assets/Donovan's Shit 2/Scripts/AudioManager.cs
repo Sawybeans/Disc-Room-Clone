@@ -37,7 +37,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (GameObject.Find("PlayerPrefab(Clone)") != null)
         {
@@ -45,15 +45,16 @@ public class AudioManager : MonoBehaviour
             Sound s = Array.Find(sounds, sound => sound.name == name);
             if (s.source.volume<.35f)
             {
-               s.source.volume += .001f;
+               s.source.volume += .003f;
             }
             
         }
         else
         {
-            Pause("Level 1 Music");
             
+                Pause("Level 1 Music");
             
+   
         }
 
     }
@@ -74,11 +75,15 @@ public class AudioManager : MonoBehaviour
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s.source.volume > 0)
         {
-            s.source.volume -= .001f;
+            s.source.volume -= .003f;
+
+            
         }
         else
         {
             s.source.Pause();
+
+
 
             if (Input.GetKeyDown(KeyCode.R))
             {
