@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
@@ -21,6 +22,8 @@ public class PlayerControl : MonoBehaviour
     public Animator playerAnim;
     //which is myself
     public GameObject player;
+
+    public GameObject bloodPrefab;
     //public ParticleSystem bloodBurst;
     void Start()
     {
@@ -129,6 +132,7 @@ public class PlayerControl : MonoBehaviour
             alive = false;
             this.GetComponent<Animator>().enabled = false;
             this.GetComponent<SpriteRenderer>().color = Color.red;
+            Instantiate(bloodPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
             Destroy(player);
             //bloodBurst.Play();
         }
