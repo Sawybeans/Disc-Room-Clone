@@ -7,9 +7,25 @@ public class AudioManager : MonoBehaviour
 {
 
     public Sound[] sounds;
+
+    private bool fadeOut = false;
+    private float sVolume = 0;
+
+    public static AudioManager instance;
     // Start is called before the first frame update
     void Awake()
     {
+        if (instance==null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
         foreach (Sound s in sounds)
         {
             s.source=gameObject.AddComponent<AudioSource>();
@@ -21,6 +37,26 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (GameObject.Find("PlayerPrefab(Clone)") != null)
+        {
+            string name = "Level 1 Music";
+            Sound s = Array.Find(sounds, sound => sound.name == name);
+            if (s.source.volume<.35f)
+            {
+               s.source.volume += .001f;
+            }
+            
+        }
+        else
+        {
+            Pause("Level 1 Music");
+            
+            
+        }
+
+    }
     private void Start()
     {
         Play("Level 1 Music");
@@ -31,5 +67,26 @@ public class AudioManager : MonoBehaviour
     {
        Sound s = Array.Find(sounds, sound => sound.name == name);
         s.source.Play();
+    }
+
+    public void Pause(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s.source.volume > 0)
+        {
+            s.source.volume -= .001f;
+        }
+        else
+        {
+            s.source.Pause();
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Play("Level 1 Music");
+            }
+        }
+            
+
+        
     }
 }
