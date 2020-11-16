@@ -31,7 +31,7 @@ public class DiscMoveTarget : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        freezeTimer = 100f;
+        freezeTimer = 500f;
         targetTimer = 1000f;
         aimTimer = 400f;
 
@@ -46,8 +46,10 @@ public class DiscMoveTarget : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        transform.Rotate(0, 0, 15);
+
         //Stay frozen until freezeTimer hits 0
 
         if (freezeTimer > 0)
@@ -84,7 +86,7 @@ public class DiscMoveTarget : MonoBehaviour
 
             if (aimTimer <= 0)
             {
-                freezeTimer = 1000f;
+                targetTimer = 1000f;
                 aimTimer = 400f;
             }
         }
@@ -105,7 +107,7 @@ public class DiscMoveTarget : MonoBehaviour
 
                 if (hitRight.collider != null)
                 {
-                    discSpeedX = -discSpeedGeneral;
+                    discSpeedX = -discSpeedGeneral * xRand;
                     bounceTimer = 10f;
                 }
 
@@ -121,7 +123,7 @@ public class DiscMoveTarget : MonoBehaviour
 
                 if (hitLeft.collider != null)
                 {
-                    discSpeedX = discSpeedGeneral;
+                    discSpeedX = discSpeedGeneral * xRand;
                     bounceTimer = 10f;
                 }
 
@@ -137,7 +139,7 @@ public class DiscMoveTarget : MonoBehaviour
 
                 if (hitTop.collider != null)
                 {
-                    discSpeedY = -discSpeedGeneral;
+                    discSpeedY = -discSpeedGeneral * yRand;
                     bounceTimer = 10f;
                 }
 
@@ -153,7 +155,7 @@ public class DiscMoveTarget : MonoBehaviour
 
                 if (hitBottom.collider != null)
                 {
-                    discSpeedY = discSpeedGeneral;
+                    discSpeedY = discSpeedGeneral * yRand;
                     bounceTimer = 10f;
                 }
 
@@ -164,6 +166,11 @@ public class DiscMoveTarget : MonoBehaviour
                 //Always be moving on the X and Y axis
                 thisRigidbody2d.velocity = new Vector3(discSpeedX, discSpeedY);
             }
+        }
+
+        if (targeting == true)
+        {
+            canMove = false;
         }
 
     }

@@ -44,7 +44,6 @@ public class DiscMoveBig : MonoBehaviour
     {
         
         transform.Rotate(0,0,15);
-        //VALID AS OF NOVEMBER 9th
 
         //Stay frozen until freezeTimer hits 0
 
