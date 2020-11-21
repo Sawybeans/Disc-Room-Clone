@@ -5,6 +5,9 @@ using UnityEngine;
 public class DiscMoveTarget : MonoBehaviour
 {
 
+    public float targetX;
+    public float targetY;
+
     public float discSpeedX = 5f;
     public float discSpeedY = 5f;
     public float rayDist = 1f;
@@ -28,12 +31,14 @@ public class DiscMoveTarget : MonoBehaviour
     public bool canMove;
     public bool targeting;
 
+    private SpriteRenderer sR;
+
     // Start is called before the first frame update
     void Start()
     {
         freezeTimer = 500f;
         targetTimer = 1000f;
-        aimTimer = 400f;
+        aimTimer = 100f;
 
         xRand = Random.Range(0.5f, 1.5f);
         yRand = Random.Range(0.5f, 1.5f);
@@ -43,6 +48,7 @@ public class DiscMoveTarget : MonoBehaviour
 
         discSpeedX = discSpeedGeneral;
         discSpeedY = discSpeedGeneral;
+        sR = self.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -54,10 +60,9 @@ public class DiscMoveTarget : MonoBehaviour
 
         if (freezeTimer > 0)
         {
-            Renderer r = self.GetComponent<Renderer>();
-            Color selfAlpha = r.material.color;
+            self.GetComponent<CircleCollider2D>().enabled = false;
+            sR.color = new Color(sR.color.r, sR.color.g, sR.color.b, 0.39f);
 
-            selfAlpha.a = 0.5f;
             freezeTimer--;
 
             canMove = false;
@@ -65,11 +70,15 @@ public class DiscMoveTarget : MonoBehaviour
 
         if (freezeTimer <= 0)
         {
+            self.GetComponent<CircleCollider2D>().enabled = true;
             canMove = true;
+            sR.color = new Color(sR.color.r, sR.color.g, sR.color.b, 1f);
         }
 
 
         //Countdown until next targeted attack
+
+        /**
 
         if (targetTimer > 0)
         {
@@ -79,21 +88,31 @@ public class DiscMoveTarget : MonoBehaviour
 
         if (targetTimer <= 0)
         {
-            discSpeedGeneral = 0f;
+            targetX = player.transform.position.x;
+            targetY = player.transform.position.y;
+
+            canMove = false;
             targeting = true;
 
             aimTimer--;
 
             if (aimTimer <= 0)
             {
-                targetTimer = 1000f;
-                aimTimer = 400f;
+                targetTimer = 500f;
+                aimTimer = 100f;
             }
         }
 
+        **/
 
-        if (targeting == false)
+
+        /**if (targeting == true)
         {
+            canMove = false;
+        }**/
+
+        //if (targeting == false)
+        //{
             //Create rays pointing to the top, bottom, left, and right sides of the object
             //If the top or bottom rays collide with a wall, flip the y speed
             //If the right or left rays collide with a wall, flip the x speed
@@ -161,16 +180,19 @@ public class DiscMoveTarget : MonoBehaviour
 
             }
 
-            if (canMove == true)
-            {
-                //Always be moving on the X and Y axis
-                thisRigidbody2d.velocity = new Vector3(discSpeedX, discSpeedY);
-            }
+            
+        //}
+
+        //Freeze disc when it can't move
+        if (canMove == true)
+        {
+            //Always be moving on the X and Y axis
+            transform.position = Vector3.MoveTowards(transform.position, player.position, discSpeedGeneral);
         }
 
-        if (targeting == true)
+        if (canMove == false)
         {
-            canMove = false;
+            thisRigidbody2d.velocity = new Vector3(0, 0);
         }
 
     }

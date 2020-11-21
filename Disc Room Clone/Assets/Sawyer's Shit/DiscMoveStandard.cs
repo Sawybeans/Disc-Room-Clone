@@ -41,7 +41,6 @@ public class DiscMoveStandard : MonoBehaviour
 
     void FixedUpdate()
     {
-        //VALID AS OF NOVEMBER 11th
 
         //Stay frozen until freezeTimer hits 0
 
