@@ -1005,8 +1005,20 @@ MonoBehaviour:
     loop: 1
     source: {fileID: 0}
   - name: SawBounce1
-    clip: {fileID: 8300000, guid: 144331f4ada47944cb09804174c2c721, type: 3}
+    clip: {fileID: 8300000, guid: a5667577ff7a48144bdcbdbb5fd0c4bf, type: 3}
     volume: 0.357
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SawLaunch1
+    clip: {fileID: 8300000, guid: a0c22c5d66366fd4e9ccbfcbb89d51b5, type: 3}
+    volume: 0.698
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SawBounceBig
+    clip: {fileID: 8300000, guid: a5667577ff7a48144bdcbdbb5fd0c4bf, type: 3}
+    volume: 0.698
     pitch: 1
     loop: 0
     source: {fileID: 0}
