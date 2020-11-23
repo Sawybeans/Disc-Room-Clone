@@ -1004,6 +1004,12 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: SawBounce1
+    clip: {fileID: 8300000, guid: 144331f4ada47944cb09804174c2c721, type: 3}
+    volume: 0.357
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &475987376
 Transform:
   m_ObjectHideFlags: 0

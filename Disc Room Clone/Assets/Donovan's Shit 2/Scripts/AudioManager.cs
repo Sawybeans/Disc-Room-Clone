@@ -70,6 +70,14 @@ public class AudioManager : MonoBehaviour
         s.source.Play();
     }
 
+    // Update is called once per frame
+    public void PlaySound(string name,float pitch)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        s.source.pitch=pitch;
+        s.source.Play();
+    }
+
     public void Pause(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);

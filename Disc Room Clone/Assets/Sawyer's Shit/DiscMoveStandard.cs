@@ -26,6 +26,9 @@ public class DiscMoveStandard : MonoBehaviour
     public bool canMove;
 
     private SpriteRenderer sR;
+
+    //Sound
+    private bool launched;
     void Start()
     {
         freezeTimer = 60f;
@@ -62,6 +65,12 @@ public class DiscMoveStandard : MonoBehaviour
 
         if (freezeTimer <= 0)
         {
+            
+            if (launched==false)
+            {
+                FindObjectOfType<AudioManager>().PlaySound("SawLaunch1",Random.Range(.9f,1f));
+                launched = true;
+            }
             self.GetComponent<CircleCollider2D>().enabled = true;
             canMove = true;
             sR.color = new Color(sR.color.r,sR.color.g,sR.color.b,1f);
@@ -82,6 +91,7 @@ public class DiscMoveStandard : MonoBehaviour
 
             if (hitRight.collider != null)
             {
+                FindObjectOfType<AudioManager>().PlaySound("SawBounce1", Random.Range(.9f, 1f));
                 discSpeedX = -discSpeedGeneral * xRand;
                 bounceTimer = 10f;
             }
@@ -98,6 +108,7 @@ public class DiscMoveStandard : MonoBehaviour
 
             if (hitLeft.collider != null)
             {
+                FindObjectOfType<AudioManager>().PlaySound("SawBounce1", Random.Range(.9f, 1f));
                 discSpeedX = discSpeedGeneral * xRand;
                 bounceTimer = 10f;
             }
@@ -114,6 +125,7 @@ public class DiscMoveStandard : MonoBehaviour
 
             if (hitTop.collider != null)
             {
+                FindObjectOfType<AudioManager>().PlaySound("SawBounce1", Random.Range(.9f, 1f));
                 discSpeedY = -discSpeedGeneral * yRand;
                 bounceTimer = 10f;
             }
@@ -130,6 +142,7 @@ public class DiscMoveStandard : MonoBehaviour
 
             if (hitBottom.collider != null)
             {
+                FindObjectOfType<AudioManager>().PlaySound("SawBounce1", Random.Range(.9f, 1f));
                 discSpeedY = discSpeedGeneral * yRand;
                 bounceTimer = 10f;
             }
