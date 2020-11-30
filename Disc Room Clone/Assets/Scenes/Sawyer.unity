@@ -502,14 +502,14 @@ PrefabInstance:
     - target: {fileID: 2105409404872272305, guid: 28909f40214003d46bb6d57ad019e89c, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 2020296066}
+      objectReference: {fileID: 0}
     - target: {fileID: 2105409404872272311, guid: 28909f40214003d46bb6d57ad019e89c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.5646572
+      value: -2.16
       objectReference: {fileID: 0}
     - target: {fileID: 2105409404872272311, guid: 28909f40214003d46bb6d57ad019e89c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.9525101
+      value: 1.57
       objectReference: {fileID: 0}
     - target: {fileID: 2105409404872272311, guid: 28909f40214003d46bb6d57ad019e89c, type: 3}
       propertyPath: m_LocalPosition.z
