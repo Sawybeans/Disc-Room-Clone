@@ -114,7 +114,7 @@ MonoBehaviour:
   bounceTimer: 0
   targetTimer: 0
   aimTimer: 0
-  discSpeedGeneral: 5
+  discSpeedGeneral: 1
   canMove: 0
   targeting: 0
 --- !u!58 &2105409404872272306
