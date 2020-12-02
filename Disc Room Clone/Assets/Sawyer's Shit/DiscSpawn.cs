@@ -11,7 +11,7 @@ public class DiscSpawn : MonoBehaviour
     public GameObject discTarget;
 
     public float spawn;
-    public float spawnTimer = 800f;
+    public float spawnTimer = 400f;
     public int maxDisc;
     int counter;
 
@@ -36,15 +36,39 @@ public class DiscSpawn : MonoBehaviour
             {
                 int newDisc = Random.Range(0, 5);
 
-                if (newDisc <= 2)
+                if (newDisc == 0)
                 {
                     Instantiate(discStandard, new Vector3(0, 0, 0), Quaternion.identity);
                     counter += 1;
                 }
 
-                if (newDisc >= 3)
+                if (newDisc == 1)
+                {
+                    Instantiate(discStandard, new Vector3(0, 0, 0), Quaternion.identity);
+                    counter += 1;
+                }
+
+                if (newDisc == 2)
+                {
+                    Instantiate(discStandard, new Vector3(0, 0, 0), Quaternion.identity);
+                    counter += 1;
+                }
+
+                if (newDisc == 3)
                 {
                     Instantiate(discBig, new Vector3(0, 0, 0), Quaternion.identity);
+                    counter += 1;
+                }
+
+                if (newDisc == 4)
+                {
+                    Instantiate(discBig, new Vector3(0, 0, 0), Quaternion.identity);
+                    counter += 1;
+                }
+
+                if (newDisc == 5)
+                {
+                    Instantiate(discTarget, new Vector3(0, 0, 0), Quaternion.identity);
                     counter += 1;
                 }
 

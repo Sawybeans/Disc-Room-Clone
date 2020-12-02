@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
-public class DiscMoveBig : MonoBehaviour
+public class DiscMoveTiny: MonoBehaviour
 {
 
     public float discSpeedX = 5f;
@@ -11,7 +12,7 @@ public class DiscMoveBig : MonoBehaviour
 
     public float xRand;
     public float yRand;
-    
+
     public Rigidbody2D thisRigidbody2d;
     public LayerMask wallMask;
 
@@ -20,7 +21,7 @@ public class DiscMoveBig : MonoBehaviour
     public float freezeTimer;
     public float bounceTimer;
 
-    public float discSpeedGeneral = 2f;
+    public float discSpeedGeneral = 5f;
 
     public bool canMove;
 
@@ -28,26 +29,26 @@ public class DiscMoveBig : MonoBehaviour
     void Start()
     {
         freezeTimer = 60f;
-        bounceTimer = 0f;
         canMove = false;
 
         xRand = Random.Range(0.5f, 1.5f);
         yRand = Random.Range(0.5f, 1.5f);
-        
-        discSpeedX = discSpeedGeneral;
-        discSpeedY = discSpeedGeneral;
+
+        discSpeedX = Random.Range(-discSpeedGeneral, discSpeedGeneral);
+        discSpeedY = Random.Range(-discSpeedGeneral, discSpeedGeneral);
         sR = self.GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        
-        transform.Rotate(0,0,15);
-
+        canMove = true;
+        transform.Rotate(0, 0, 10);
+        /**
         if (freezeTimer > 0)
         {
-            sR.color = new Color(sR.color.r,sR.color.g,sR.color.b,0.39f);
+            self.GetComponent<CircleCollider2D>().enabled = false;
+
+            sR.color = new Color(sR.color.r, sR.color.g, sR.color.b, 0.39f);
             freezeTimer--;
 
             canMove = false;
@@ -56,10 +57,10 @@ public class DiscMoveBig : MonoBehaviour
         if (freezeTimer <= 0)
         {
             self.GetComponent<CircleCollider2D>().enabled = true;
-            sR.color = new Color(sR.color.r,sR.color.g,sR.color.b,1f);
             canMove = true;
-
+            sR.color = new Color(sR.color.r, sR.color.g, sR.color.b, 1f);
         }
+        **/
 
 
         //Create rays pointing to the top, bottom, left, and right sides of the object
@@ -134,6 +135,11 @@ public class DiscMoveBig : MonoBehaviour
             //Always be moving on the X and Y axis
             thisRigidbody2d.velocity = new Vector3(discSpeedX, discSpeedY);
         }
-        
+
+
     }
+
+
+
+
 }

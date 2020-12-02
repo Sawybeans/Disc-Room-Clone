@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DiscMoveBig : MonoBehaviour
+public class DiscMoveBoss : MonoBehaviour
 {
+
+    // HUGE NOTE !!!!!!!
+    // To get it working properly, you'll have to put this in the room without the spawner, then place a tiny disc in the room along with it
+    // Then use that tiny disc object in the "Disc Tiny" field in the boss object's properties window
 
     public float discSpeedX = 5f;
     public float discSpeedY = 5f;
@@ -11,7 +15,7 @@ public class DiscMoveBig : MonoBehaviour
 
     public float xRand;
     public float yRand;
-    
+
     public Rigidbody2D thisRigidbody2d;
     public LayerMask wallMask;
 
@@ -24,16 +28,20 @@ public class DiscMoveBig : MonoBehaviour
 
     public bool canMove;
 
+    public float newSpawn = 100f;
+
+    public GameObject discTiny;
+
     private SpriteRenderer sR;
     void Start()
     {
-        freezeTimer = 60f;
+        freezeTimer = 200f;
         bounceTimer = 0f;
         canMove = false;
 
         xRand = Random.Range(0.5f, 1.5f);
         yRand = Random.Range(0.5f, 1.5f);
-        
+
         discSpeedX = discSpeedGeneral;
         discSpeedY = discSpeedGeneral;
         sR = self.GetComponent<SpriteRenderer>();
@@ -42,12 +50,23 @@ public class DiscMoveBig : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        
-        transform.Rotate(0,0,15);
+
+        if (newSpawn > 0)
+        {
+            newSpawn--;
+        }
+
+        if (newSpawn <= 0)
+        {
+            Instantiate(discTiny, self.transform.position, Quaternion.identity);
+            newSpawn = 100f;
+        }
+
+        transform.Rotate(0, 0, 15);
 
         if (freezeTimer > 0)
         {
-            sR.color = new Color(sR.color.r,sR.color.g,sR.color.b,0.39f);
+            sR.color = new Color(sR.color.r, sR.color.g, sR.color.b, 0.39f);
             freezeTimer--;
 
             canMove = false;
@@ -56,7 +75,7 @@ public class DiscMoveBig : MonoBehaviour
         if (freezeTimer <= 0)
         {
             self.GetComponent<CircleCollider2D>().enabled = true;
-            sR.color = new Color(sR.color.r,sR.color.g,sR.color.b,1f);
+            sR.color = new Color(sR.color.r, sR.color.g, sR.color.b, 1f);
             canMove = true;
 
         }
@@ -134,6 +153,6 @@ public class DiscMoveBig : MonoBehaviour
             //Always be moving on the X and Y axis
             thisRigidbody2d.velocity = new Vector3(discSpeedX, discSpeedY);
         }
-        
+
     }
 }

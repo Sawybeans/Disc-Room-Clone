@@ -142,20 +142,20 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-//    void OnTriggerEnter2D(Collider2D other)
-//    {
-//        if (other.tag == "Disc")
-//        {
-//            alive = false;
-//            this.GetComponent<Animator>().enabled = false;
-//            this.GetComponent<SpriteRenderer>().color = Color.red;
-//            Instantiate(bloodPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
-//            Destroy(player);
-//            //bloodBurst.Play();
-//        }
-//    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+       if (other.tag == "Disc")
+        {
+            alive = false;
+            this.GetComponent<Animator>().enabled = false;
+            this.GetComponent<SpriteRenderer>().color = Color.red;
+            Instantiate(bloodPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
+            Destroy(player);
+            //bloodBurst.Play();
+        }
+    }
 
-
+    /**
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Disc")
@@ -167,6 +167,7 @@ public class PlayerControl : MonoBehaviour
             Destroy(player);
         }
     }
+    **/
 //    void OnCollisionEnter2D(Collision2D other)
 //    {
 //        if (other.gameObject.tag == "Disc")
