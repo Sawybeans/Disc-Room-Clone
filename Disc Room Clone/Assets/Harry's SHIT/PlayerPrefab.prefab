@@ -53,6 +53,7 @@ MonoBehaviour:
   counter: 0
   dashSpeeds: 3.5
   dashTime: 1
+  gameManager: {fileID: 0}
   playerAnim: {fileID: 3053432751397596363}
   player: {fileID: 3053432751397596367}
   bloodPrefab: {fileID: 912618092124681782, guid: cc685e2da75a115408ed409ff7d169a9, type: 3}
@@ -95,7 +96,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: -6251451809504726511, guid: e08c1ed94a63f5340aa78720a5910491, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

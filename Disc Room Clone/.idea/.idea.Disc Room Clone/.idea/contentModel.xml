@@ -62,6 +62,9 @@
           <e p="DiscMoveWalls.cs" t="Include" />
           <e p="DiscSpawn.cs" t="Include" />
         </e>
+        <e p="Yifan Folder" t="Include">
+          <e p="keyboardNavigation.cs" t="Include" />
+        </e>
       </e>
       <e p="Disc Room Clone.sln" t="IncludeFlat" />
       <e p="obj" t="ExcludeRecursive" />
