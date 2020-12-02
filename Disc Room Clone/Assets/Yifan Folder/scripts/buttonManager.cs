@@ -10,7 +10,7 @@ public class buttonManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        room4.interactable = false;
+        //room4.interactable = false;
     }
 
     // Update is called once per frame
