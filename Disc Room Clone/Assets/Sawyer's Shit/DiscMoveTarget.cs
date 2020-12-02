@@ -19,7 +19,7 @@ public class DiscMoveTarget : MonoBehaviour
     public LayerMask wallMask;
 
     public GameObject self;
-    public Transform player;
+    //public Transform player;
     public GameObject playerObject;
 
     public float freezeTimer;
@@ -48,7 +48,7 @@ public class DiscMoveTarget : MonoBehaviour
         targeting = false;
 
         playerObject = GameObject.FindGameObjectWithTag("Player");
-        player = playerObject.transform.position;
+        //Vector3 player = playerObject.transform.position;
 
         discSpeedX = discSpeedGeneral;
         discSpeedY = discSpeedGeneral;
@@ -149,8 +149,10 @@ public class DiscMoveTarget : MonoBehaviour
         //Freeze disc when it can't move
         if (canMove == true)
         {
+            Vector3 player = playerObject.transform.position;
+
             //Always be moving on the X and Y axis
-            transform.position = Vector3.MoveTowards(transform.position, player.position, discSpeedGeneral * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, player, discSpeedGeneral * Time.deltaTime);
         }
 
         if (canMove == false)
