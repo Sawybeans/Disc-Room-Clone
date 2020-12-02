@@ -16,8 +16,9 @@ public class PlayerControl : MonoBehaviour
     float dashSpeed;
     public float counter;
     public float dashSpeeds;
-
     public float dashTime;
+
+    public GameManager gameManager;
     //Animation stuff
     public Animator playerAnim;
     //which is myself
@@ -36,22 +37,22 @@ public class PlayerControl : MonoBehaviour
     {
         //debug
         //print(alive);
-        if (this.transform.position.x > 4.22f)
-        {
-            this.transform.position = new Vector3(4.22f, this.transform.position.y,this.transform.position.z);
-        }
-        if (this.transform.position.x < -4.01f)
-        {
-            this.transform.position = new Vector3(-4.01f, this.transform.position.y,this.transform.position.z);
-        }
-        if (this.transform.position.y > 4.22f)
-        {
-            this.transform.position = new Vector3(this.transform.position.x,4.22f,this.transform.position.z);
-        }
-        if (this.transform.position.y < -4.01f)
-        {
-            this.transform.position = new Vector3(this.transform.position.x,-4.01f,this.transform.position.z);
-        }
+//        if (this.transform.position.x > (4.22f + gameManager.SpawnVector3.x))
+//        {
+//            this.transform.position = new Vector3(4.22f + gameManager.SpawnVector3.x, this.transform.position.y,this.transform.position.z);
+//        }
+//        if (this.transform.position.x < (-4.01f + gameManager.SpawnVector3.x))
+//        {
+//            this.transform.position = new Vector3(-4.01f + gameManager.SpawnVector3.x, this.transform.position.y,this.transform.position.z);
+//        }
+//        if (this.transform.position.y > (4.22f + gameManager.SpawnVector3.y))
+//        {
+//            this.transform.position = new Vector3(this.transform.position.x,4.22f + gameManager.SpawnVector3.y,this.transform.position.z);
+//        }
+//        if (this.transform.position.y < (-4.01f + gameManager.SpawnVector3.y))
+//        {
+//            this.transform.position = new Vector3(this.transform.position.x,-4.01f + gameManager.SpawnVector3.y,this.transform.position.z);
+//        }
         
         if (alive)
         {
@@ -141,19 +142,31 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+//    void OnTriggerEnter2D(Collider2D other)
+//    {
+//        if (other.tag == "Disc")
+//        {
+//            alive = false;
+//            this.GetComponent<Animator>().enabled = false;
+//            this.GetComponent<SpriteRenderer>().color = Color.red;
+//            Instantiate(bloodPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
+//            Destroy(player);
+//            //bloodBurst.Play();
+//        }
+//    }
+
+
+    void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.tag == "Disc")
+        if (other.gameObject.tag == "Disc")
         {
             alive = false;
             this.GetComponent<Animator>().enabled = false;
             this.GetComponent<SpriteRenderer>().color = Color.red;
             Instantiate(bloodPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
             Destroy(player);
-            //bloodBurst.Play();
         }
     }
-
 //    void OnCollisionEnter2D(Collision2D other)
 //    {
 //        if (other.gameObject.tag == "Disc")
