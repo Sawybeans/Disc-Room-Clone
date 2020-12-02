@@ -20,6 +20,7 @@ public class DiscMoveTarget : MonoBehaviour
 
     public GameObject self;
     public Transform player;
+    public GameObject playerObject;
 
     public float freezeTimer;
     public float bounceTimer;
@@ -45,6 +46,9 @@ public class DiscMoveTarget : MonoBehaviour
 
         canMove = false;
         targeting = false;
+
+        playerObject = GameObject.FindGameObjectWithTag("Player");
+        player = playerObject.transform.position;
 
         discSpeedX = discSpeedGeneral;
         discSpeedY = discSpeedGeneral;
