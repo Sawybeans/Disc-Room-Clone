@@ -10,10 +10,12 @@ public class keyboardNavigation : MonoBehaviour
 
     public GameObject roomMenu, discsMenu, menuMenu;
 
+    private GameManager GameManagerScript;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        GameManagerScript = GameObject.FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -69,13 +71,104 @@ public class keyboardNavigation : MonoBehaviour
 
     //void discsMenuOpened()
     //{
-       //discsMenu.SetActive(true);
-       //roomMenu.SetActive(false);
-       //menuMenu.SetActive(false);
+    //discsMenu.SetActive(true);
+    //roomMenu.SetActive(false);
+    //menuMenu.SetActive(false);
     //}
 
     //void discsMenuClosed()
     //{
-        //discsMenu.SetActive(true);
+    //discsMenu.SetActive(true);
     //}
+
+    public void enterLevel1()
+    {
+        GameManagerScript.cam.transform.position = Vector3.Lerp(GameManagerScript.twoCam, GameManagerScript.oneCam, 1f);
+        GameManagerScript.inOne = true;
+        GameManagerScript.inTwo = false;
+        GameManagerScript.inThree = false;
+        GameManagerScript.inFour = false;
+        GameManagerScript.inFive = false;
+        GameManagerScript.inSix = false;
+        GameManagerScript.inBoss = false;
+        GameManagerScript.SpawnVector3 = GameManagerScript.lvlOne;
+    }
+
+    public void enterLevel2()
+    {
+        GameManagerScript.cam.transform.position = Vector3.Lerp(GameManagerScript.oneCam, GameManagerScript.twoCam, 1f);
+        GameManagerScript.inOne = false;
+        GameManagerScript.inTwo = true;
+        GameManagerScript.inThree = false;
+        GameManagerScript.inFour = false;
+        GameManagerScript.inFive = false;
+        GameManagerScript.inSix = false;
+        GameManagerScript.inBoss = false;
+        GameManagerScript.SpawnVector3 = GameManagerScript.lvlTwo;
+    }
+
+    public void enterLevel3()
+    {
+        GameManagerScript.cam.transform.position = Vector3.Lerp(GameManagerScript.twoCam, GameManagerScript.threeCam, 1f);
+        GameManagerScript.inOne = false;
+        GameManagerScript.inTwo = false;
+        GameManagerScript.inThree = true;
+        GameManagerScript.inFour = false;
+        GameManagerScript.inFive = false;
+        GameManagerScript.inSix = false;
+        GameManagerScript.inBoss = false;
+        GameManagerScript.SpawnVector3 = GameManagerScript.lvlThree;
+    }
+
+    public void enterLevel4()
+    {
+        GameManagerScript.cam.transform.position = Vector3.Lerp(GameManagerScript.oneCam, GameManagerScript.fourCam, 1f);
+        GameManagerScript.inOne = false;
+        GameManagerScript.inTwo = false;
+        GameManagerScript.inThree = false;
+        GameManagerScript.inFour = true;
+        GameManagerScript.inFive = false;
+        GameManagerScript.inSix = false;
+        GameManagerScript.inBoss = false;
+        GameManagerScript.SpawnVector3 = GameManagerScript.lvlFour;
+    }
+
+    public void enterLevel5()
+    {
+        GameManagerScript.cam.transform.position = Vector3.Lerp(GameManagerScript.fourCam, GameManagerScript.fiveCam, 1f);
+        GameManagerScript.inOne = false;
+        GameManagerScript.inTwo = false;
+        GameManagerScript.inThree = false;
+        GameManagerScript.inFour = false;
+        GameManagerScript.inFive = true;
+        GameManagerScript.inSix = false;
+        GameManagerScript.inBoss = false;
+        GameManagerScript.SpawnVector3 = GameManagerScript.lvlFive;
+    }
+
+    public void enterLevel6()
+    {
+        GameManagerScript.cam.transform.position = Vector3.Lerp(GameManagerScript.threeCam, GameManagerScript.sixCam, 1f);
+        GameManagerScript.inOne = false;
+        GameManagerScript.inTwo = false;
+        GameManagerScript.inThree = false;
+        GameManagerScript.inFour = false;
+        GameManagerScript.inFive = false;
+        GameManagerScript.inSix = true;
+        GameManagerScript.inBoss = false;
+        GameManagerScript.SpawnVector3 = GameManagerScript.lvlSix;
+    }
+
+    public void enterLevelBoss()
+    {
+        GameManagerScript.cam.transform.position = Vector3.Lerp(GameManagerScript.oneCam, GameManagerScript.bossCam, 1f);
+        GameManagerScript.inOne = false;
+        GameManagerScript.inTwo = false;
+        GameManagerScript.inThree = false;
+        GameManagerScript.inFour = false;
+        GameManagerScript.inFive = false;
+        GameManagerScript.inSix = false;
+        GameManagerScript.inBoss = true;
+        GameManagerScript.SpawnVector3 = GameManagerScript.lvlBoss;
+    }
 }
