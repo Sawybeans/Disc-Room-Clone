@@ -151,9 +151,23 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+//    void OnTriggerEnter2D(Collider2D other)
+//    {
+//        if (other.tag == "Disc")
+//        {
+//            alive = false;
+//            this.GetComponent<Animator>().enabled = false;
+//            this.GetComponent<SpriteRenderer>().color = Color.red;
+//            Instantiate(bloodPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
+//            Destroy(player);
+//            //bloodBurst.Play();
+//        }
+//    }
+
+
+    void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.tag == "Disc")
+        if (other.gameObject.tag == "Disc")
         {
            alive = false;
             this.GetComponent<Animator>().enabled = false;
@@ -170,7 +184,6 @@ public class PlayerControl : MonoBehaviour
             Instantiate(heartPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
             Instantiate(toothPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
             Destroy(player);
-            //bloodBurst.Play();
         }
     }
 
