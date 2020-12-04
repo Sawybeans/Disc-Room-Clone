@@ -52,6 +52,7 @@
             <e p="DiscMoveStandards.cs" t="Include" />
             <e p="DiscMoveWall.cs" t="Include" />
             <e p="GameManager.cs" t="Include" />
+            <e p="Meat.cs" t="Include" />
             <e p="PlayerControl.cs" t="Include" />
           </e>
         </e>
@@ -63,7 +64,12 @@
           <e p="DiscSpawn.cs" t="Include" />
         </e>
         <e p="Yifan Folder" t="Include">
-          <e p="keyboardNavigation.cs" t="Include" />
+          <e p="Scripts" t="Include">
+            <e p="buttonManager.cs" t="Include" />
+            <e p="keyboardNavigation.cs" t="Include" />
+            <e p="splashscreen.cs" t="Include" />
+            <e p="start.cs" t="Include" />
+          </e>
         </e>
       </e>
       <e p="Disc Room Clone.sln" t="IncludeFlat" />

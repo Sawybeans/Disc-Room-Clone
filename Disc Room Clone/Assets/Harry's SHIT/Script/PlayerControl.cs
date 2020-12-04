@@ -25,6 +25,15 @@ public class PlayerControl : MonoBehaviour
     public GameObject player;
 
     public GameObject bloodPrefab;
+    public GameObject splatter;
+    public GameObject skullPrefab;
+    public GameObject bonePrefab;
+    public GameObject brainPrefab;
+    public GameObject heartPrefab;
+    public GameObject ribsPrefab;
+    public GameObject meatPrefab;
+    public GameObject veinPrefab;
+    public GameObject toothPrefab;
     //public ParticleSystem bloodBurst;
     void Start()
     {
@@ -142,31 +151,30 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-//    void OnTriggerEnter2D(Collider2D other)
-//    {
-//        if (other.tag == "Disc")
-//        {
-//            alive = false;
-//            this.GetComponent<Animator>().enabled = false;
-//            this.GetComponent<SpriteRenderer>().color = Color.red;
-//            Instantiate(bloodPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
-//            Destroy(player);
-//            //bloodBurst.Play();
-//        }
-//    }
-
-
-    void OnCollisionEnter2D(Collision2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Disc")
+        if (other.tag == "Disc")
         {
-            alive = false;
+           alive = false;
             this.GetComponent<Animator>().enabled = false;
             this.GetComponent<SpriteRenderer>().color = Color.red;
             Instantiate(bloodPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
+            Instantiate(splatter, this.transform.position, Quaternion.Euler(0, 0, 0));
+            
+            Instantiate(skullPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
+            Instantiate(veinPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
+            Instantiate(brainPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
+            Instantiate(ribsPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
+            Instantiate(meatPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
+            Instantiate(bonePrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
+            Instantiate(heartPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
+            Instantiate(toothPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
             Destroy(player);
+            //bloodBurst.Play();
         }
     }
+
+
 //    void OnCollisionEnter2D(Collision2D other)
 //    {
 //        if (other.gameObject.tag == "Disc")
@@ -176,9 +184,9 @@ public class PlayerControl : MonoBehaviour
 //            this.GetComponent<SpriteRenderer>().color = Color.red;
 //            Instantiate(bloodPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
 //            Destroy(player);
-//            //bloodBurst.Play();
 //        }
 //    }
+
 
     //All physics is here, currently I'm not sure if we need to use fixed update for collision detect or etc, so I'm commenting it out.
 //    void FixedUpdate()

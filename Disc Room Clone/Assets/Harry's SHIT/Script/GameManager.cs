@@ -10,6 +10,15 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public Vector3 SpawnVector3;
 
+    
+    //this is for lerp
+    public float timeElapsed;
+    public float lerpDuration;
+    public bool canLerp;
+
+
+    public float coolDownTimer;
+    public float roomCoolDown;
     public LevelEditor zeroEditor;
     public LevelEditor oneEditor;
     public LevelEditor twoEditor;
@@ -62,14 +71,18 @@ public class GameManager : MonoBehaviour
         inFive = false;
         inSix = false;
         inBoss = false;
+
+        canLerp = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        roomCoolDown -= 1 * Time.deltaTime;
         //debug
         print(SpawnVector3);
+        print(roomCoolDown + "/" + coolDownTimer);
+        
         if (Input.GetKeyDown(KeyCode.R))
         { 
             //SceneManager.LoadScene("Harrying");
@@ -78,50 +91,62 @@ public class GameManager : MonoBehaviour
         //levelZero condition
         if (inZero == true)
         {
-            if (zeroEditor.upDoor && !zeroEditor.upLocked)
+            if (zeroEditor.upDoor && !zeroEditor.upLocked && roomCoolDown <= 0)
             {
-                if (Input.GetKeyDown(KeyCode.W))
+                if (Input.GetKeyDown(KeyCode.W) && canLerp)
                 {
-                    cam.transform.position = Vector3.Lerp(zeroCam,oneCam,1f);
+                    //cam.transform.position = Vector3.Lerp(zeroCam,oneCam,1f);
+                    StartCoroutine(Lerp(zeroCam,oneCam));
                     inZero = false;
                     inOne = true;
                     SpawnVector3 = lvlOne;
+                    roomCoolDown = coolDownTimer;
+                    canLerp = false;
                 }
             }
         }
         //level one condition
         if (inOne == true)
         {
-            if (oneEditor.upDoor && !oneEditor.upLocked)
+            if (oneEditor.upDoor && !oneEditor.upLocked && roomCoolDown <= 0)
             {
-                if (Input.GetKeyDown(KeyCode.W))
+                if (Input.GetKeyDown(KeyCode.W) && canLerp)
                 {
-                    cam.transform.position = Vector3.Lerp(oneCam,bossCam,1f);
+                    //cam.transform.position = Vector3.Lerp(oneCam,bossCam,1f);
+                    StartCoroutine(Lerp(oneCam,bossCam));
                     inOne = false;
                     inBoss = true;
                     SpawnVector3 = lvlBoss;
+                    roomCoolDown = coolDownTimer;
+                    canLerp = false;
                 }
             }
             
-            if (oneEditor.leftDoor && !oneEditor.leftLocked)
+            if (oneEditor.leftDoor && !oneEditor.leftLocked && roomCoolDown <= 0)
             {
-                if (Input.GetKeyDown(KeyCode.A))
+                if (Input.GetKeyDown(KeyCode.A) && canLerp)
                 {
-                    cam.transform.position = Vector3.Lerp(oneCam,twoCam,1f);
+                    //cam.transform.position = Vector3.Lerp(oneCam,twoCam,1f);
+                    StartCoroutine(Lerp(oneCam,twoCam));
                     inOne = false;
                     inTwo = true;
                     SpawnVector3 = lvlTwo;
+                    roomCoolDown = coolDownTimer;
+                    canLerp = false;
                 }
             }
             
-            if (oneEditor.rightDoor && !oneEditor.rightLocked)
+            if (oneEditor.rightDoor && !oneEditor.rightLocked && roomCoolDown <= 0)
             {
-                if (Input.GetKeyDown(KeyCode.D))
+                if (Input.GetKeyDown(KeyCode.D) && canLerp)
                 {
-                    cam.transform.position = Vector3.Lerp(oneCam,fourCam,1f);
+                    //cam.transform.position = Vector3.Lerp(oneCam,fourCam,1f);
+                    StartCoroutine(Lerp(oneCam,fourCam));
                     inOne = false;
                     inFour = true;
                     SpawnVector3 = lvlFour;
+                    roomCoolDown = coolDownTimer;
+                    canLerp = false;
                 }
             }
         }
@@ -129,25 +154,31 @@ public class GameManager : MonoBehaviour
         //level 2 condition
         if (inTwo == true)
         {
-            if (twoEditor.upDoor && !twoEditor.upLocked)
+            if (twoEditor.upDoor && !twoEditor.upLocked && roomCoolDown <= 0)
             {
-                if (Input.GetKeyUp(KeyCode.W))
+                if (Input.GetKeyUp(KeyCode.W) && canLerp)
                 {
-                    cam.transform.position = Vector3.Lerp(twoCam,threeCam,1f);
+                    //cam.transform.position = Vector3.Lerp(twoCam,threeCam,1f);
+                    StartCoroutine(Lerp(twoCam,threeCam));
                     inTwo = false;
                     inThree = true;
                     SpawnVector3 = lvlThree;
+                    roomCoolDown = coolDownTimer;
+                    canLerp = false;
                 }
             }
 
-            if (twoEditor.rightDoor && !twoEditor.rightLocked)
+            if (twoEditor.rightDoor && !twoEditor.rightLocked && roomCoolDown <= 0)
             {
-                if (Input.GetKeyDown(KeyCode.D))
+                if (Input.GetKeyDown(KeyCode.D) && canLerp)
                 {
-                    cam.transform.position = Vector3.Lerp(twoCam,oneCam,1f);
+                    //cam.transform.position = Vector3.Lerp(twoCam,oneCam,1f);
+                    StartCoroutine(Lerp(twoCam,oneCam));
                     inTwo = false;
                     inOne = true;
                     SpawnVector3 = lvlOne;
+                    roomCoolDown = coolDownTimer;
+                    canLerp = false;
                 }
             }
         }
@@ -155,36 +186,45 @@ public class GameManager : MonoBehaviour
         //level 3 condition
         if (inThree == true)
         {
-            if (threeEditor.upDoor && !threeEditor.upLocked)
+            if (threeEditor.upDoor && !threeEditor.upLocked && roomCoolDown <= 0)
             {
-                if (Input.GetKeyDown(KeyCode.W))
+                if (Input.GetKeyDown(KeyCode.W) && canLerp)
                 {
-                    cam.transform.position = Vector3.Lerp(threeCam,sixCam,1f);
+                    //cam.transform.position = Vector3.Lerp(threeCam,sixCam,1f);
+                    StartCoroutine(Lerp(threeCam,sixCam));
                     inThree = false;
                     inSix = true;
                     SpawnVector3 = lvlSix;
+                    roomCoolDown = coolDownTimer;
+                    canLerp = false;
                 }
             }
 
-            if (threeEditor.rightDoor && !threeEditor.rightLocked)
+            if (threeEditor.rightDoor && !threeEditor.rightLocked && roomCoolDown <= 0)
             {
-                if (Input.GetKeyDown(KeyCode.D))
+                if (Input.GetKeyDown(KeyCode.D) && canLerp)
                 {
-                    cam.transform.position = Vector3.Lerp(threeCam,bossCam,1f);
+                    //cam.transform.position = Vector3.Lerp(threeCam,bossCam,1f);
+                    StartCoroutine(Lerp(threeCam,bossCam));
                     inThree = false;
                     inBoss = true;
                     SpawnVector3 = lvlBoss;
+                    roomCoolDown = coolDownTimer;
+                    canLerp = false;
                 }
             }
             
-            if (threeEditor.downDoor && !threeEditor.downLocked)
+            if (threeEditor.downDoor && !threeEditor.downLocked && roomCoolDown <= 0)
             {
-                if (Input.GetKeyDown(KeyCode.S))
+                if (Input.GetKeyDown(KeyCode.S) && canLerp)
                 {
-                    cam.transform.position = Vector3.Lerp(threeCam,twoCam,1f);
+                    //cam.transform.position = Vector3.Lerp(threeCam,twoCam,1f);
+                    StartCoroutine(Lerp(threeCam,twoCam));
                     inThree = false;
                     inTwo = true;
                     SpawnVector3 = lvlTwo;
+                    roomCoolDown = coolDownTimer;
+                    canLerp = false;
                 }
             }
         }
@@ -192,25 +232,31 @@ public class GameManager : MonoBehaviour
         //level 4 condition
         if (inFour == true)
         {
-            if (fourEditor.upDoor && !fourEditor.upLocked)
+            if (fourEditor.upDoor && !fourEditor.upLocked && roomCoolDown <= 0)
             {
-                if (Input.GetKeyDown(KeyCode.W))
+                if (Input.GetKeyDown(KeyCode.W) && canLerp)
                 {
-                    cam.transform.position = Vector3.Lerp(fourCam,fiveCam,1f);
+                    //cam.transform.position = Vector3.Lerp(fourCam,fiveCam,1f);
+                    StartCoroutine(Lerp(fourCam,fiveCam));
                     inFour = false;
                     inFive = true;
                     SpawnVector3 = lvlFive;
+                    roomCoolDown = coolDownTimer;
+                    canLerp = false;
                 }
             }
 
-            if (fourEditor.leftDoor && !fourEditor.leftLocked)
+            if (fourEditor.leftDoor && !fourEditor.leftLocked && roomCoolDown <= 0)
             {
-                if (Input.GetKeyDown(KeyCode.A))
+                if (Input.GetKeyDown(KeyCode.A) && canLerp)
                 {
-                    cam.transform.position = Vector3.Lerp(fourCam,oneCam,1f);
+                    //cam.transform.position = Vector3.Lerp(fourCam,oneCam,1f);
+                    StartCoroutine(Lerp(fourCam,oneCam));
                     inFour = false;
                     inOne = true;
                     SpawnVector3 = lvlOne;
+                    roomCoolDown = coolDownTimer;
+                    canLerp = false;
                 }
             }
         }
@@ -219,25 +265,31 @@ public class GameManager : MonoBehaviour
         if (inFive == true)
         {
 
-            if (fiveEditor.leftDoor && !fiveEditor.leftLocked)
+            if (fiveEditor.leftDoor && !fiveEditor.leftLocked && roomCoolDown <= 0)
             {
-                if (Input.GetKeyDown(KeyCode.A))
+                if (Input.GetKeyDown(KeyCode.A) && canLerp)
                 {
-                    cam.transform.position = Vector3.Lerp(fiveCam,bossCam,1f);
+                    //cam.transform.position = Vector3.Lerp(fiveCam,bossCam,1f);
+                    StartCoroutine(Lerp(fiveCam,bossCam));
                     inFive = false;
                     inBoss = true;
                     SpawnVector3 = lvlBoss;
+                    roomCoolDown = coolDownTimer;
+                    canLerp = false;
                 }
             }
             
-            if (fiveEditor.downDoor && !fiveEditor.downLocked)
+            if (fiveEditor.downDoor && !fiveEditor.downLocked && roomCoolDown <= 0)
             {
-                if (Input.GetKeyDown(KeyCode.S))
+                if (Input.GetKeyDown(KeyCode.S) && canLerp)
                 {
-                    cam.transform.position = Vector3.Lerp(fiveCam,fourCam,1f);
+                    //cam.transform.position = Vector3.Lerp(fiveCam,fourCam,1f);
+                    StartCoroutine(Lerp(fiveCam,fourCam));
                     inFive = false;
                     inFour = true;
                     SpawnVector3 = lvlFour;
+                    roomCoolDown = coolDownTimer;
+                    canLerp = false;
                 }
             }
         }
@@ -246,14 +298,17 @@ public class GameManager : MonoBehaviour
         if (inSix == true)
         {
 
-            if (sixEditor.downDoor && !sixEditor.downLocked)
+            if (sixEditor.downDoor && !sixEditor.downLocked && roomCoolDown <= 0)
             {
-                if (Input.GetKeyDown(KeyCode.S))
+                if (Input.GetKeyDown(KeyCode.S) && canLerp)
                 {
-                    cam.transform.position = Vector3.Lerp(sixCam,threeCam,1f);
+                    //cam.transform.position = Vector3.Lerp(sixCam,threeCam,1f);
+                    StartCoroutine(Lerp(sixCam,threeCam));
                     inSix = false;
                     inThree = true;
                     SpawnVector3 = lvlThree;
+                    roomCoolDown = coolDownTimer;
+                    canLerp = false;
                 }
             }
         }
@@ -262,41 +317,62 @@ public class GameManager : MonoBehaviour
         if (inBoss == true)
         {
 
-            if (bossEditor.leftDoor && !bossEditor.leftLocked)
+            if (bossEditor.leftDoor && !bossEditor.leftLocked && roomCoolDown <= 0)
             {
-                if (Input.GetKeyDown(KeyCode.A))
+                if (Input.GetKeyDown(KeyCode.A) && canLerp)
                 {
-                    cam.transform.position = Vector3.Lerp(bossCam,threeCam,1f);
+                    //cam.transform.position = Vector3.Lerp(bossCam,threeCam,1f);
+                    StartCoroutine(Lerp(bossCam,threeCam));
                     inBoss = false;
                     inThree = true;
                     SpawnVector3 = lvlThree;
+                    roomCoolDown = coolDownTimer;
+                    canLerp = false;
                 }
             }
             
-            if (bossEditor.downDoor && !bossEditor.downLocked)
+            if (bossEditor.downDoor && !bossEditor.downLocked && roomCoolDown <= 0)
             {
-                if (Input.GetKeyDown(KeyCode.S))
+                if (Input.GetKeyDown(KeyCode.S) && canLerp)
                 {
-                    cam.transform.position = Vector3.Lerp(bossCam,oneCam,1f);
+                    //cam.transform.position = Vector3.Lerp(bossCam,oneCam,1f);
+                    StartCoroutine(Lerp(bossCam,oneCam));
                     inBoss = false;
                     inOne = true;
                     SpawnVector3 = lvlOne;
+                    roomCoolDown = coolDownTimer;
+                    canLerp = false;
                 }
             }
             
-            if (bossEditor.rightDoor && !bossEditor.rightLocked)
+            if (bossEditor.rightDoor && !bossEditor.rightLocked && roomCoolDown <= 0)
             {
-                if (Input.GetKeyDown(KeyCode.D))
+                if (Input.GetKeyDown(KeyCode.D) && canLerp)
                 {
-                    cam.transform.position = Vector3.Lerp(bossCam,fiveCam,1f);
+                    //cam.transform.position = Vector3.Lerp(bossCam,fiveCam,1f);
+                    StartCoroutine(Lerp(bossCam,fiveCam));
                     inBoss = false;
                     inFive = true;
                     SpawnVector3 = lvlFive;
+                    roomCoolDown = coolDownTimer;
+                    canLerp = false;
                 }
             }
         }
         
+        IEnumerator Lerp(Vector3 startValue, Vector3 endValue)
+        {
+            timeElapsed = 0;
+            while (timeElapsed < lerpDuration)
+            {
+                cam.transform.position = Vector3.Lerp(startValue,endValue,timeElapsed / lerpDuration);
+                timeElapsed += Time.deltaTime;
+                yield return null;
+            }
 
+            cam.transform.position = endValue;
+            canLerp = true;
+        }
 
     }
 }
