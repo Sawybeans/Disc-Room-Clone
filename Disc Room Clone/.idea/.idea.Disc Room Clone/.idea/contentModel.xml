@@ -45,21 +45,26 @@
           </e>
         </e>
         <e p="Harry's SHIT" t="Include">
-          <e p="LevelController.cs" t="Include" />
-          <e p="LevelEditor.cs" t="Include" />
+          <e p="FakeDiscSpawn.cs" t="Include" />
           <e p="Script" t="Include">
             <e p="BloodControl.cs" t="Include" />
+            <e p="DestoryFromDistance.cs" t="Include" />
             <e p="DiscMoveStandards.cs" t="Include" />
             <e p="DiscMoveWall.cs" t="Include" />
             <e p="GameManager.cs" t="Include" />
+            <e p="LevelController.cs" t="Include" />
+            <e p="LevelEditor.cs" t="Include" />
             <e p="Meat.cs" t="Include" />
             <e p="PlayerControl.cs" t="Include" />
           </e>
+          <e p="Timer2.cs" t="Include" />
         </e>
         <e p="Sawyer's Shit" t="Include">
           <e p="DiscMoveBig.cs" t="Include" />
+          <e p="DiscMoveBoss.cs" t="Include" />
           <e p="DiscMoveStandard.cs" t="Include" />
           <e p="DiscMoveTarget.cs" t="Include" />
+          <e p="DiscMoveTiny.cs" t="Include" />
           <e p="DiscMoveWalls.cs" t="Include" />
           <e p="DiscSpawn.cs" t="Include" />
         </e>

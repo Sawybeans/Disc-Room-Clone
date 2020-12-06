@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public Vector3 SpawnVector3;
 
+    public FakeDiscSpawn fakeAss;
+    //this is used to determine player state
+    public bool isAlive;
     
     //this is for lerp
     public float timeElapsed;
@@ -78,20 +81,37 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        //this is used to determine if the player is alive
+        if(GameObject.Find("PlayerPrefab(Clone)") != null)
+        {
+            print("player alive");
+            isAlive = true;
+        }
+        else
+        {
+            print("player dead");
+            isAlive = false;
+        }
+        
+        
+        
         roomCoolDown -= 1 * Time.deltaTime;
         //debug
-        print(SpawnVector3);
-        print(roomCoolDown + "/" + coolDownTimer);
-        
+        //print(SpawnVector3);
+        //print(roomCoolDown + "/" + coolDownTimer);
+        print(fakeAss.canSpawn);
         if (Input.GetKeyDown(KeyCode.R))
         { 
             //SceneManager.LoadScene("Harrying");
             Instantiate(playerPrefab, SpawnVector3, Quaternion.Euler(0, 0, 0));
+            fakeAss.canSpawn = true;
+
         }
         //levelZero condition
         if (inZero == true)
         {
-            if (zeroEditor.upDoor && !zeroEditor.upLocked && roomCoolDown <= 0)
+            if (zeroEditor.upDoor && !zeroEditor.upLocked && roomCoolDown <= 0 && isAlive == false)
             {
                 if (Input.GetKeyDown(KeyCode.W) && canLerp)
                 {
@@ -108,7 +128,7 @@ public class GameManager : MonoBehaviour
         //level one condition
         if (inOne == true)
         {
-            if (oneEditor.upDoor && !oneEditor.upLocked && roomCoolDown <= 0)
+            if (oneEditor.upDoor && !oneEditor.upLocked && roomCoolDown <= 0 && isAlive == false)
             {
                 if (Input.GetKeyDown(KeyCode.W) && canLerp)
                 {
@@ -122,7 +142,7 @@ public class GameManager : MonoBehaviour
                 }
             }
             
-            if (oneEditor.leftDoor && !oneEditor.leftLocked && roomCoolDown <= 0)
+            if (oneEditor.leftDoor && !oneEditor.leftLocked && roomCoolDown <= 0 && isAlive == false)
             {
                 if (Input.GetKeyDown(KeyCode.A) && canLerp)
                 {
@@ -136,7 +156,7 @@ public class GameManager : MonoBehaviour
                 }
             }
             
-            if (oneEditor.rightDoor && !oneEditor.rightLocked && roomCoolDown <= 0)
+            if (oneEditor.rightDoor && !oneEditor.rightLocked && roomCoolDown <= 0 && isAlive == false)
             {
                 if (Input.GetKeyDown(KeyCode.D) && canLerp)
                 {
@@ -154,7 +174,7 @@ public class GameManager : MonoBehaviour
         //level 2 condition
         if (inTwo == true)
         {
-            if (twoEditor.upDoor && !twoEditor.upLocked && roomCoolDown <= 0)
+            if (twoEditor.upDoor && !twoEditor.upLocked && roomCoolDown <= 0 && isAlive == false)
             {
                 if (Input.GetKeyUp(KeyCode.W) && canLerp)
                 {
@@ -168,7 +188,7 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            if (twoEditor.rightDoor && !twoEditor.rightLocked && roomCoolDown <= 0)
+            if (twoEditor.rightDoor && !twoEditor.rightLocked && roomCoolDown <= 0 && isAlive == false)
             {
                 if (Input.GetKeyDown(KeyCode.D) && canLerp)
                 {
@@ -186,7 +206,7 @@ public class GameManager : MonoBehaviour
         //level 3 condition
         if (inThree == true)
         {
-            if (threeEditor.upDoor && !threeEditor.upLocked && roomCoolDown <= 0)
+            if (threeEditor.upDoor && !threeEditor.upLocked && roomCoolDown <= 0 && isAlive == false)
             {
                 if (Input.GetKeyDown(KeyCode.W) && canLerp)
                 {
@@ -200,7 +220,7 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            if (threeEditor.rightDoor && !threeEditor.rightLocked && roomCoolDown <= 0)
+            if (threeEditor.rightDoor && !threeEditor.rightLocked && roomCoolDown <= 0 && isAlive == false)
             {
                 if (Input.GetKeyDown(KeyCode.D) && canLerp)
                 {
@@ -214,7 +234,7 @@ public class GameManager : MonoBehaviour
                 }
             }
             
-            if (threeEditor.downDoor && !threeEditor.downLocked && roomCoolDown <= 0)
+            if (threeEditor.downDoor && !threeEditor.downLocked && roomCoolDown <= 0 && isAlive == false)
             {
                 if (Input.GetKeyDown(KeyCode.S) && canLerp)
                 {
@@ -232,7 +252,7 @@ public class GameManager : MonoBehaviour
         //level 4 condition
         if (inFour == true)
         {
-            if (fourEditor.upDoor && !fourEditor.upLocked && roomCoolDown <= 0)
+            if (fourEditor.upDoor && !fourEditor.upLocked && roomCoolDown <= 0 && isAlive == false)
             {
                 if (Input.GetKeyDown(KeyCode.W) && canLerp)
                 {
@@ -246,7 +266,7 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            if (fourEditor.leftDoor && !fourEditor.leftLocked && roomCoolDown <= 0)
+            if (fourEditor.leftDoor && !fourEditor.leftLocked && roomCoolDown <= 0 && isAlive == false)
             {
                 if (Input.GetKeyDown(KeyCode.A) && canLerp)
                 {
@@ -265,7 +285,7 @@ public class GameManager : MonoBehaviour
         if (inFive == true)
         {
 
-            if (fiveEditor.leftDoor && !fiveEditor.leftLocked && roomCoolDown <= 0)
+            if (fiveEditor.leftDoor && !fiveEditor.leftLocked && roomCoolDown <= 0 && isAlive == false)
             {
                 if (Input.GetKeyDown(KeyCode.A) && canLerp)
                 {
@@ -279,7 +299,7 @@ public class GameManager : MonoBehaviour
                 }
             }
             
-            if (fiveEditor.downDoor && !fiveEditor.downLocked && roomCoolDown <= 0)
+            if (fiveEditor.downDoor && !fiveEditor.downLocked && roomCoolDown <= 0 && isAlive == false)
             {
                 if (Input.GetKeyDown(KeyCode.S) && canLerp)
                 {
@@ -298,7 +318,7 @@ public class GameManager : MonoBehaviour
         if (inSix == true)
         {
 
-            if (sixEditor.downDoor && !sixEditor.downLocked && roomCoolDown <= 0)
+            if (sixEditor.downDoor && !sixEditor.downLocked && roomCoolDown <= 0 && isAlive == false)
             {
                 if (Input.GetKeyDown(KeyCode.S) && canLerp)
                 {
@@ -317,7 +337,7 @@ public class GameManager : MonoBehaviour
         if (inBoss == true)
         {
 
-            if (bossEditor.leftDoor && !bossEditor.leftLocked && roomCoolDown <= 0)
+            if (bossEditor.leftDoor && !bossEditor.leftLocked && roomCoolDown <= 0 && isAlive == false)
             {
                 if (Input.GetKeyDown(KeyCode.A) && canLerp)
                 {
@@ -331,7 +351,7 @@ public class GameManager : MonoBehaviour
                 }
             }
             
-            if (bossEditor.downDoor && !bossEditor.downLocked && roomCoolDown <= 0)
+            if (bossEditor.downDoor && !bossEditor.downLocked && roomCoolDown <= 0 && isAlive == false)
             {
                 if (Input.GetKeyDown(KeyCode.S) && canLerp)
                 {
@@ -345,7 +365,7 @@ public class GameManager : MonoBehaviour
                 }
             }
             
-            if (bossEditor.rightDoor && !bossEditor.rightLocked && roomCoolDown <= 0)
+            if (bossEditor.rightDoor && !bossEditor.rightLocked && roomCoolDown <= 0 && isAlive == false)
             {
                 if (Input.GetKeyDown(KeyCode.D) && canLerp)
                 {

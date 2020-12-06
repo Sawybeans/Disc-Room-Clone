@@ -34,6 +34,8 @@ public class PlayerControl : MonoBehaviour
     public GameObject meatPrefab;
     public GameObject veinPrefab;
     public GameObject toothPrefab;
+    
+    
     //public ParticleSystem bloodBurst;
     void Start()
     {
@@ -62,6 +64,8 @@ public class PlayerControl : MonoBehaviour
 //        {
 //            this.transform.position = new Vector3(this.transform.position.x,-4.01f + gameManager.SpawnVector3.y,this.transform.position.z);
 //        }
+
+        
         
         if (alive)
         {
