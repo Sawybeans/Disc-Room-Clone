@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8189666355355141228}
   - component: {fileID: 8189666355355141229}
   - component: {fileID: 8189666355355141234}
+  - component: {fileID: 3552907765327544471}
   m_Layer: 0
   m_Name: DiscWall
   m_TagString: Disc
@@ -147,3 +148,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   self: {fileID: 8189666355355141235}
+--- !u!114 &3552907765327544471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8189666355355141235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c0ec35c1db0b074e95a0371c747a881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToPlayer: 0

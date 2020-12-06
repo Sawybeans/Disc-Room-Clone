@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2661724103236044949}
   - component: {fileID: 2661724103236044951}
   - component: {fileID: 2661724103236044952}
+  - component: {fileID: -5096930067384952414}
   - component: {fileID: 2661724103236044953}
   m_Layer: 0
   m_Name: DiscTiny
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 469d99dabedae2e4b8eb54571dce4dbd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -122,6 +123,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.00000020344382}
   serializedVersion: 2
   m_Radius: 0.2561492
+--- !u!114 &-5096930067384952414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2661724103236044948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c0ec35c1db0b074e95a0371c747a881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToPlayer: 0
 --- !u!114 &2661724103236044953
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ public class PlayerControl : MonoBehaviour
     public float dashSpeeds;
     public float dashTime;
 
+    public bool isDash;
     public GameManager gameManager;
     //Animation stuff
     public Animator playerAnim;
@@ -42,30 +43,14 @@ public class PlayerControl : MonoBehaviour
         //Initialize prefabs
         alive = true;
         canPress = true;
+        isDash = false;
     }
     
     void Update()
     {
-        //debug
-        //print(alive);
-//        if (this.transform.position.x > (4.22f + gameManager.SpawnVector3.x))
-//        {
-//            this.transform.position = new Vector3(4.22f + gameManager.SpawnVector3.x, this.transform.position.y,this.transform.position.z);
-//        }
-//        if (this.transform.position.x < (-4.01f + gameManager.SpawnVector3.x))
-//        {
-//            this.transform.position = new Vector3(-4.01f + gameManager.SpawnVector3.x, this.transform.position.y,this.transform.position.z);
-//        }
-//        if (this.transform.position.y > (4.22f + gameManager.SpawnVector3.y))
-//        {
-//            this.transform.position = new Vector3(this.transform.position.x,4.22f + gameManager.SpawnVector3.y,this.transform.position.z);
-//        }
-//        if (this.transform.position.y < (-4.01f + gameManager.SpawnVector3.y))
-//        {
-//            this.transform.position = new Vector3(this.transform.position.x,-4.01f + gameManager.SpawnVector3.y,this.transform.position.z);
-//        }
 
-        
+
+
         
         if (alive)
         {
@@ -74,12 +59,14 @@ public class PlayerControl : MonoBehaviour
                 counter += 1 * Time.deltaTime;
                 if (counter < dashTime)
                 {
+                    isDash = true;
                     dashSpeed = dashSpeeds;
                     player.GetComponent<CircleCollider2D>().enabled = false;
                     this.GetComponent<SpriteRenderer>().color = Color.blue;
                 }
                 else
                 {
+                    isDash = false;
                     dashSpeed = 0f;
                     player.GetComponent<CircleCollider2D>().enabled = true;
                     this.GetComponent<SpriteRenderer>().color = Color.white;
@@ -87,6 +74,7 @@ public class PlayerControl : MonoBehaviour
             }
             else
             {
+                isDash = false;
                 dashSpeed = 0;
                 player.GetComponent<CircleCollider2D>().enabled = true;
                 this.GetComponent<SpriteRenderer>().color = Color.white;
@@ -97,7 +85,7 @@ public class PlayerControl : MonoBehaviour
             //UP
             if (Input.GetKey(KeyCode.UpArrow))
             {
-                print("UP");
+                //print("UP");
                 playerAnim.SetBool("isUp",true);
                 playerAnim.SetBool("faceUp",false);
                 transform.Translate(0,(runSpeed + dashSpeed)* Time.deltaTime,0);
@@ -106,7 +94,7 @@ public class PlayerControl : MonoBehaviour
             //DOWN
             if (Input.GetKey(KeyCode.DownArrow))
             {
-                print("DOWN");
+                //print("DOWN");
                 playerAnim.SetBool("isDown",true);
                 playerAnim.SetBool("faceDown",false);
                 transform.Translate(0,-(runSpeed + dashSpeed)* Time.deltaTime,0);
@@ -115,7 +103,7 @@ public class PlayerControl : MonoBehaviour
             //LEFT
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                print("LEFT");
+                //print("LEFT");
                 playerAnim.SetBool("isLeft",true);
                 playerAnim.SetBool("faceLeft",false);
                 transform.Translate(-(runSpeed + dashSpeed)* Time.deltaTime,0,0);
@@ -124,7 +112,7 @@ public class PlayerControl : MonoBehaviour
             //RIGHT
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                print("RIGHT");
+                //print("RIGHT");
                 playerAnim.SetBool("isRight",true);
                 playerAnim.SetBool("faceRight",false);
                 transform.Translate((runSpeed + dashSpeed)* Time.deltaTime,0,0);
@@ -157,24 +145,27 @@ public class PlayerControl : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Disc")
+        if (isDash == false)
         {
-           alive = false;
-            this.GetComponent<Animator>().enabled = false;
-            this.GetComponent<SpriteRenderer>().color = Color.red;
-            Instantiate(bloodPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
-            Instantiate(splatter, this.transform.position, Quaternion.Euler(0, 0, 0));
+            if (other.tag == "Disc")
+            {
+                alive = false;
+                this.GetComponent<Animator>().enabled = false;
+                this.GetComponent<SpriteRenderer>().color = Color.red;
+                Instantiate(bloodPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
+                Instantiate(splatter, this.transform.position, Quaternion.Euler(0, 0, 0));
             
-            Instantiate(skullPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
-            Instantiate(veinPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
-            Instantiate(brainPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
-            Instantiate(ribsPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
-            Instantiate(meatPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
-            Instantiate(bonePrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
-            Instantiate(heartPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
-            Instantiate(toothPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
-            Destroy(player);
-            //bloodBurst.Play();
+                Instantiate(skullPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
+                Instantiate(veinPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
+                Instantiate(brainPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
+                Instantiate(ribsPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
+                Instantiate(meatPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
+                Instantiate(bonePrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
+                Instantiate(heartPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
+                Instantiate(toothPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
+                Destroy(player);
+                //bloodBurst.Play();
+            }
         }
     }
 
