@@ -33,6 +33,9 @@ public class DiscMoveBoss : MonoBehaviour
     public GameObject discTiny;
 
     private SpriteRenderer sR;
+
+    //Audio
+    private bool launched = false;
     void Start()
     {
         freezeTimer = 200f;
@@ -59,6 +62,8 @@ public class DiscMoveBoss : MonoBehaviour
         if (newSpawn <= 0)
         {
             Instantiate(discTiny, self.transform.position, Quaternion.identity);
+            //Play Sound
+            FindObjectOfType<AudioManager>().PlaySound("SawLaunch1", UnityEngine.Random.Range(1.1f, 1.2f));
             newSpawn = 100f;
         }
 
@@ -78,6 +83,12 @@ public class DiscMoveBoss : MonoBehaviour
             sR.color = new Color(sR.color.r, sR.color.g, sR.color.b, 1f);
             canMove = true;
 
+            if (!launched)
+            {
+                //Play Sound
+                FindObjectOfType<AudioManager>().PlaySound("SawLaunch1", UnityEngine.Random.Range(.80f, .85f));
+                launched = true;
+            }
         }
 
 
@@ -96,6 +107,20 @@ public class DiscMoveBoss : MonoBehaviour
             {
                 discSpeedX = -discSpeedGeneral * xRand;
                 bounceTimer = 10f;
+                int rand = Random.Range(0, 2);
+                //Play Sound
+                if (rand == 0)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce1", UnityEngine.Random.Range(.90f, 1f));
+                }
+                else if (rand == 1)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce2", UnityEngine.Random.Range(.90f, 1f));
+                }
+                else if (rand == 2)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce3", UnityEngine.Random.Range(.90f, 1f));
+                }
             }
 
         }
@@ -112,6 +137,20 @@ public class DiscMoveBoss : MonoBehaviour
             {
                 discSpeedX = discSpeedGeneral * xRand;
                 bounceTimer = 10f;
+                int rand = Random.Range(0, 2);
+                //Play Sound
+                if (rand == 0)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce1", UnityEngine.Random.Range(.90f, 1f));
+                }
+                else if (rand == 1)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce2", UnityEngine.Random.Range(.90f, 1f));
+                }
+                else if (rand == 2)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce3", UnityEngine.Random.Range(.90f, 1f));
+                }
             }
 
         }
@@ -128,8 +167,21 @@ public class DiscMoveBoss : MonoBehaviour
             {
                 discSpeedY = -discSpeedGeneral * yRand;
                 bounceTimer = 10f;
+                int rand = Random.Range(0, 2);
+                //Play Sound
+                if (rand == 0)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce1", UnityEngine.Random.Range(.90f, 1f));
+                }
+                else if (rand == 1)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce2", UnityEngine.Random.Range(.90f, 1f));
+                }
+                else if (rand == 2)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce3", UnityEngine.Random.Range(.90f, 1f));
+                }
             }
-
 
         }
 
@@ -144,6 +196,20 @@ public class DiscMoveBoss : MonoBehaviour
             {
                 discSpeedY = discSpeedGeneral * yRand;
                 bounceTimer = 10f;
+                int rand = Random.Range(0, 2);
+                //Play Sound
+                if (rand == 0)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce1", UnityEngine.Random.Range(.90f, 1f));
+                }
+                else if (rand == 1)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce2", UnityEngine.Random.Range(.90f, 1f));
+                }
+                else if (rand == 2)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce3", UnityEngine.Random.Range(.90f, 1f));
+                }
             }
 
         }

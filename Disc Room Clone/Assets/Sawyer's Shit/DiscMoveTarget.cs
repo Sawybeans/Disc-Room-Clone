@@ -34,6 +34,8 @@ public class DiscMoveTarget : MonoBehaviour
 
     private SpriteRenderer sR;
 
+    private bool launched = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,6 +79,13 @@ public class DiscMoveTarget : MonoBehaviour
             self.GetComponent<CircleCollider2D>().enabled = true;
             canMove = true;
             sR.color = new Color(sR.color.r, sR.color.g, sR.color.b, 1f);
+
+            if (!launched)
+            {
+                //Play Sound
+                FindObjectOfType<AudioManager>().PlaySound("SawLaunch1", UnityEngine.Random.Range(.90f, 1f));
+                launched = true;
+            }
         }
 
 

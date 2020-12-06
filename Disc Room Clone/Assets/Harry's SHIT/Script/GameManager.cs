@@ -86,12 +86,12 @@ public class GameManager : MonoBehaviour
         //this is used to determine if the player is alive
         if(GameObject.Find("PlayerPrefab(Clone)") != null)
         {
-            print("player alive");
+            //print("player alive");
             isAlive = true;
         }
         else
         {
-            print("player dead");
+            //print("player dead");
             isAlive = false;
         }
         roomCoolDown -= 1 * Time.deltaTime;
@@ -100,6 +100,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && isAlive == false) 
         {
             Instantiate(playerPrefab, SpawnVector3, Quaternion.Euler(0, 0, 0));
+            FindObjectOfType<AudioManager>().PlaySound("Respawn", UnityEngine.Random.Range(.90f, 1f));
             fakeAss.canSpawn = true;
             fakeAss.counter = 0;
             navigator.timerIsRunning = true;

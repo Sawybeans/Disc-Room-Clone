@@ -1570,12 +1570,105 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
+  - name: Level 1 Music 2
+    clip: {fileID: 8300000, guid: 617b4f3bede355f4781d8b2037c5a106, type: 3}
+    volume: 0.357
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
   - name: Level 1 Music
     clip: {fileID: 8300000, guid: db5280c5a7ffd0d4798228d88868b39b, type: 3}
     volume: 0.357
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: Gore1
+    clip: {fileID: 8300000, guid: 4031d9653fa682140b72214f7703b61e, type: 3}
+    volume: 0.608
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Gore2
+    clip: {fileID: 8300000, guid: ef7e7bfe99d8ae24ca6e9c86ced39be8, type: 3}
+    volume: 0.608
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Gore3
+    clip: {fileID: 8300000, guid: be28926e2cce8ed468df5ed7cf652351, type: 3}
+    volume: 0.608
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Gore4
+    clip: {fileID: 8300000, guid: 231da17f3ca328e4587b3fe0f3be7ec5, type: 3}
+    volume: 0.608
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CameraTransition
+    clip: {fileID: 8300000, guid: 2190af14a214ce9459fbe98ae7c279b1, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SawBounce1
+    clip: {fileID: 8300000, guid: ef5433d2b1035f84aaa41a05d92ad5a9, type: 3}
+    volume: 0.396
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SawLaunch1
+    clip: {fileID: 8300000, guid: 36d91cde6c5fa7a4481d8dfe6f1e18a6, type: 3}
+    volume: 0.418
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SawBounce2
+    clip: {fileID: 8300000, guid: ef5433d2b1035f84aaa41a05d92ad5a9, type: 3}
+    volume: 0.418
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SawBounce3
+    clip: {fileID: 8300000, guid: ef5433d2b1035f84aaa41a05d92ad5a9, type: 3}
+    volume: 0.418
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Footstep
+    clip: {fileID: 8300000, guid: 52b08a3a59a583a46a83975874db900c, type: 3}
+    volume: 0.406
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Select1
+    clip: {fileID: 8300000, guid: bd22b65c5421d2041905a5d76d0fe49d, type: 3}
+    volume: 0.406
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Select2
+    clip: {fileID: 8300000, guid: 0e8da1ca1b1cb824a9ed6012ba2f895d, type: 3}
+    volume: 0.406
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Denied
+    clip: {fileID: 8300000, guid: 5157ce1366802c44cb82d6454da68204, type: 3}
+    volume: 0.485
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Respawn
+    clip: {fileID: 8300000, guid: e5fc10d9e8a13cc4b8710f955c3ee9d9, type: 3}
+    volume: 0.505
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  mixerGroupEffects: {fileID: -5370335173561972284, guid: a94e63fdd4b9fec488821ad49eb35faf, type: 2}
+  mixerGroupMusic: {fileID: 2943860830194393787, guid: a94e63fdd4b9fec488821ad49eb35faf, type: 2}
+  musicMixer: {fileID: 24100000, guid: a94e63fdd4b9fec488821ad49eb35faf, type: 2}
 --- !u!4 &475987376
 Transform:
   m_ObjectHideFlags: 0
@@ -2770,14 +2863,14 @@ RectTransform:
   m_GameObject: {fileID: 818158663}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 958902521}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -667, y: 33.299988}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 100, y: -25}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &940893890 stripped
@@ -3256,14 +3349,14 @@ RectTransform:
   m_GameObject: {fileID: 1102148937}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 958902521}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -750, y: -42}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 100, y: -76}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1102148939
@@ -3643,6 +3736,18 @@ PrefabInstance:
     - target: {fileID: 6943387002292144031, guid: 6a4222e51f7514060a933ac153dc27fe, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: switchToSplashScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943387002555243418, guid: 6a4222e51f7514060a933ac153dc27fe, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943387002555243418, guid: 6a4222e51f7514060a933ac153dc27fe, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943387002555243418, guid: 6a4222e51f7514060a933ac153dc27fe, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a4222e51f7514060a933ac153dc27fe, type: 3}

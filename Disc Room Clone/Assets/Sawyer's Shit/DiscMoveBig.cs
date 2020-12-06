@@ -25,6 +25,7 @@ public class DiscMoveBig : MonoBehaviour
     public bool canMove;
 
     private SpriteRenderer sR;
+    private bool launched = false;
     void Start()
     {
         freezeTimer = 60f;
@@ -59,6 +60,12 @@ public class DiscMoveBig : MonoBehaviour
             sR.color = new Color(sR.color.r,sR.color.g,sR.color.b,1f);
             canMove = true;
 
+            if (!launched)
+            {
+                //Play Sound
+                FindObjectOfType<AudioManager>().PlaySound("SawLaunch1", UnityEngine.Random.Range(.80f, .85f));
+                launched = true;
+            }
         }
 
 
@@ -77,6 +84,20 @@ public class DiscMoveBig : MonoBehaviour
             {
                 discSpeedX = -discSpeedGeneral * xRand;
                 bounceTimer = 10f;
+                int rand = Random.Range(0, 2);
+                //Play Sound
+                if (rand == 0)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce1", UnityEngine.Random.Range(.8f, .9f));
+                }
+                else if (rand == 1)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce2", UnityEngine.Random.Range(.8f, .9f));
+                }
+                else if (rand == 2)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce3", UnityEngine.Random.Range(.8f, .9f));
+                }
             }
 
         }
@@ -93,6 +114,21 @@ public class DiscMoveBig : MonoBehaviour
             {
                 discSpeedX = discSpeedGeneral * xRand;
                 bounceTimer = 10f;
+
+                int rand = Random.Range(0, 2);
+                //Play Sound
+                if (rand == 0)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce1", UnityEngine.Random.Range(.8f, .9f));
+                }
+                else if (rand == 1)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce2", UnityEngine.Random.Range(.8f, .9f));
+                }
+                else if (rand == 2)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce3", UnityEngine.Random.Range(.8f, .9f));
+                }
             }
 
         }
@@ -109,6 +145,20 @@ public class DiscMoveBig : MonoBehaviour
             {
                 discSpeedY = -discSpeedGeneral * yRand;
                 bounceTimer = 10f;
+                int rand = Random.Range(0, 2);
+                //Play Sound
+                if (rand == 0)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce1", UnityEngine.Random.Range(.8f, .9f));
+                }
+                else if (rand == 1)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce2", UnityEngine.Random.Range(.8f, .9f));
+                }
+                else if (rand == 2)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce3", UnityEngine.Random.Range(.8f, .9f));
+                }
             }
 
 
@@ -125,6 +175,20 @@ public class DiscMoveBig : MonoBehaviour
             {
                 discSpeedY = discSpeedGeneral * yRand;
                 bounceTimer = 10f;
+                int rand = Random.Range(0, 2);
+                //Play Sound
+                if (rand == 0)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce1", UnityEngine.Random.Range(.8f, .9f));
+                }
+                else if (rand == 1)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce2", UnityEngine.Random.Range(.8f, .9f));
+                }
+                else if (rand == 2)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("SawBounce3", UnityEngine.Random.Range(.8f, .9f));
+                }
             }
 
         }

@@ -31,7 +31,7 @@ public class FakeDiscSpawn : MonoBehaviour
         // below is used to determind what disc to spawn in different levels
         if (gM.inZero == true && gM.isAlive == true)
         {
-            print("Spawner intro");
+            //print("Spawner intro");
             zeroSpawn();
         }
 
@@ -82,12 +82,12 @@ public class FakeDiscSpawn : MonoBehaviour
     #region discSpawnFunctions
     public void zeroSpawn()
     {
-        print("canspawn:" + canSpawn);
+        //print("canspawn:" + canSpawn);
         if (canSpawn = true)
         {
             maxDisc = 1;
             //counter = 0;
-            print(counter);
+            //print(counter);
             canSpawn = false;
         }
         

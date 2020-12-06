@@ -150,6 +150,30 @@ public class PlayerControl : MonoBehaviour
             if (other.tag == "Disc")
             {
                 alive = false;
+
+                //Play Sound
+                int rand = UnityEngine.Random.Range(0, 3);
+
+                if (rand==0)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("Gore1", UnityEngine.Random.Range(.95f, 1f));
+                }
+                else if (rand == 1)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("Gore2", UnityEngine.Random.Range(.95f, 1f));
+                }
+                else if (rand == 2)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("Gore3", UnityEngine.Random.Range(.95f, 1f));
+                }
+                else if (rand == 3)
+                {
+                    FindObjectOfType<AudioManager>().PlaySound("Gore4", UnityEngine.Random.Range(.95f, 1f));
+                }
+
+
+
+
                 this.GetComponent<Animator>().enabled = false;
                 this.GetComponent<SpriteRenderer>().color = Color.red;
                 Instantiate(bloodPrefab, this.transform.position, Quaternion.Euler(0, 0, 0));
@@ -167,6 +191,12 @@ public class PlayerControl : MonoBehaviour
                 //bloodBurst.Play();
             }
         }
+    }
+
+    public void FootStep()
+    {
+        //Play Sound
+        FindObjectOfType<AudioManager>().PlaySound("Footstep", UnityEngine.Random.Range(1.5f, 1.7f));
     }
 
 

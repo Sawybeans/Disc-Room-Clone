@@ -61,14 +61,14 @@ public class keyboardNavigation : MonoBehaviour
                     }
                     else if(Input.GetKeyDown(KeyCode.R) && GameManagerScript.isAlive == false)
                     {
-                        Debug.Log("Player dead!");
+                        //Debug.Log("Player dead!");
                         timeRemaining = 0;
                         DisplayTime(timeRemaining, timerHighestZero);
                         timerIsRunning = false;
                     }
                     else
                     {
-                        Debug.Log("Player dead!");
+                        //Debug.Log("Player dead!");
                         timeRemaining = 0;
                         DisplayTime(timeRemaining, timerHighestZero);
                         timerIsRunning = false;
@@ -280,7 +280,7 @@ public class keyboardNavigation : MonoBehaviour
             fiveEditor.leftLocked = false;
         }
         //win condition
-        if (timerHighestBoss >= 20f)
+        if (timerHighestBoss >= 40f)
         {
             Application.LoadLevel("end screen");
         }
@@ -327,6 +327,8 @@ public class keyboardNavigation : MonoBehaviour
 
             EventSystem.current.SetSelectedGameObject(firstButton);
 
+            //Enable Lowpass
+            FindObjectOfType<AudioManager>().lowPassEnable();
         }
         else
         {
@@ -352,6 +354,9 @@ public class keyboardNavigation : MonoBehaviour
             roomMenu.SetActive(false);
             Time.timeScale = 1f;
         }
+
+        //Enable Lowpass
+        FindObjectOfType<AudioManager>().lowPassDisable();
     }
 
     //void discsMenuOpened()
@@ -368,92 +373,163 @@ public class keyboardNavigation : MonoBehaviour
 
     public void enterLevel1()
     {
-        GameManagerScript.cam.transform.position = Vector3.Lerp(GameManagerScript.twoCam, GameManagerScript.oneCam, 1f);
-        GameManagerScript.inOne = true;
-        GameManagerScript.inTwo = false;
-        GameManagerScript.inThree = false;
-        GameManagerScript.inFour = false;
-        GameManagerScript.inFive = false;
-        GameManagerScript.inSix = false;
-        GameManagerScript.inBoss = false;
-        GameManagerScript.SpawnVector3 = GameManagerScript.lvlOne;
+        if (GameManagerScript.isAlive == false)
+        {
+            GameManagerScript.cam.transform.position = Vector3.Lerp(GameManagerScript.twoCam, GameManagerScript.oneCam, 1f);
+            GameManagerScript.inOne = true;
+            GameManagerScript.inTwo = false;
+            GameManagerScript.inThree = false;
+            GameManagerScript.inFour = false;
+            GameManagerScript.inFive = false;
+            GameManagerScript.inSix = false;
+            GameManagerScript.inBoss = false;
+            GameManagerScript.SpawnVector3 = GameManagerScript.lvlOne;
+            //Play Sound
+            FindObjectOfType<AudioManager>().PlaySound("CameraTransition", UnityEngine.Random.Range(.90f, 1f));
+        }
+        else
+        {
+            //Play Sound
+            FindObjectOfType<AudioManager>().PlaySound("Denied", UnityEngine.Random.Range(.90f, 1f));
+        }
+
     }
 
     public void enterLevel2()
     {
-        GameManagerScript.cam.transform.position = Vector3.Lerp(GameManagerScript.oneCam, GameManagerScript.twoCam, 1f);
-        GameManagerScript.inOne = false;
-        GameManagerScript.inTwo = true;
-        GameManagerScript.inThree = false;
-        GameManagerScript.inFour = false;
-        GameManagerScript.inFive = false;
-        GameManagerScript.inSix = false;
-        GameManagerScript.inBoss = false;
-        GameManagerScript.SpawnVector3 = GameManagerScript.lvlTwo;
+        if (GameManagerScript.isAlive == false)
+        {
+            GameManagerScript.cam.transform.position = Vector3.Lerp(GameManagerScript.oneCam, GameManagerScript.twoCam, 1f);
+            GameManagerScript.inOne = false;
+            GameManagerScript.inTwo = true;
+            GameManagerScript.inThree = false;
+            GameManagerScript.inFour = false;
+            GameManagerScript.inFive = false;
+            GameManagerScript.inSix = false;
+            GameManagerScript.inBoss = false;
+            GameManagerScript.SpawnVector3 = GameManagerScript.lvlTwo;
+            //Play Sound
+            FindObjectOfType<AudioManager>().PlaySound("CameraTransition", UnityEngine.Random.Range(.90f, 1f));
+        }
+        else
+        {
+            //Play Sound
+            FindObjectOfType<AudioManager>().PlaySound("Denied", UnityEngine.Random.Range(.90f, 1f));
+        }
     }
 
     public void enterLevel3()
     {
-        GameManagerScript.cam.transform.position = Vector3.Lerp(GameManagerScript.twoCam, GameManagerScript.threeCam, 1f);
-        GameManagerScript.inOne = false;
-        GameManagerScript.inTwo = false;
-        GameManagerScript.inThree = true;
-        GameManagerScript.inFour = false;
-        GameManagerScript.inFive = false;
-        GameManagerScript.inSix = false;
-        GameManagerScript.inBoss = false;
-        GameManagerScript.SpawnVector3 = GameManagerScript.lvlThree;
+        if (GameManagerScript.isAlive == false)
+        {
+            GameManagerScript.cam.transform.position = Vector3.Lerp(GameManagerScript.twoCam, GameManagerScript.threeCam, 1f);
+            GameManagerScript.inOne = false;
+            GameManagerScript.inTwo = false;
+            GameManagerScript.inThree = true;
+            GameManagerScript.inFour = false;
+            GameManagerScript.inFive = false;
+            GameManagerScript.inSix = false;
+            GameManagerScript.inBoss = false;
+            GameManagerScript.SpawnVector3 = GameManagerScript.lvlThree;
+            //Play Sound
+            FindObjectOfType<AudioManager>().PlaySound("CameraTransition", UnityEngine.Random.Range(.90f, 1f));
+        }
+        else
+        {
+            //Play Sound
+            FindObjectOfType<AudioManager>().PlaySound("Denied", UnityEngine.Random.Range(.90f, 1f));
+        }
     }
 
     public void enterLevel4()
     {
-        GameManagerScript.cam.transform.position = Vector3.Lerp(GameManagerScript.oneCam, GameManagerScript.fourCam, 1f);
-        GameManagerScript.inOne = false;
-        GameManagerScript.inTwo = false;
-        GameManagerScript.inThree = false;
-        GameManagerScript.inFour = true;
-        GameManagerScript.inFive = false;
-        GameManagerScript.inSix = false;
-        GameManagerScript.inBoss = false;
-        GameManagerScript.SpawnVector3 = GameManagerScript.lvlFour;
+        if (GameManagerScript.isAlive == false)
+        {
+            GameManagerScript.cam.transform.position = Vector3.Lerp(GameManagerScript.oneCam, GameManagerScript.fourCam, 1f);
+            GameManagerScript.inOne = false;
+            GameManagerScript.inTwo = false;
+            GameManagerScript.inThree = false;
+            GameManagerScript.inFour = true;
+            GameManagerScript.inFive = false;
+            GameManagerScript.inSix = false;
+            GameManagerScript.inBoss = false;
+            GameManagerScript.SpawnVector3 = GameManagerScript.lvlFour;
+            //Play Sound
+            FindObjectOfType<AudioManager>().PlaySound("CameraTransition", UnityEngine.Random.Range(.90f, 1f));
+        }
+        else
+        {
+            //Play Sound
+            FindObjectOfType<AudioManager>().PlaySound("Denied", UnityEngine.Random.Range(.90f, 1f));
+        }
     }
 
     public void enterLevel5()
     {
-        GameManagerScript.cam.transform.position = Vector3.Lerp(GameManagerScript.fourCam, GameManagerScript.fiveCam, 1f);
-        GameManagerScript.inOne = false;
-        GameManagerScript.inTwo = false;
-        GameManagerScript.inThree = false;
-        GameManagerScript.inFour = false;
-        GameManagerScript.inFive = true;
-        GameManagerScript.inSix = false;
-        GameManagerScript.inBoss = false;
-        GameManagerScript.SpawnVector3 = GameManagerScript.lvlFive;
+        if (GameManagerScript.isAlive == false)
+        {
+            GameManagerScript.cam.transform.position = Vector3.Lerp(GameManagerScript.fourCam, GameManagerScript.fiveCam, 1f);
+            GameManagerScript.inOne = false;
+            GameManagerScript.inTwo = false;
+            GameManagerScript.inThree = false;
+            GameManagerScript.inFour = false;
+            GameManagerScript.inFive = true;
+            GameManagerScript.inSix = false;
+            GameManagerScript.inBoss = false;
+            GameManagerScript.SpawnVector3 = GameManagerScript.lvlFive;
+            //Play Sound
+            FindObjectOfType<AudioManager>().PlaySound("CameraTransition", UnityEngine.Random.Range(.90f, 1f));
+        }
+        else
+        {
+            //Play Sound
+            FindObjectOfType<AudioManager>().PlaySound("Denied", UnityEngine.Random.Range(.90f, 1f));
+        }
     }
 
     public void enterLevel6()
     {
-        GameManagerScript.cam.transform.position = Vector3.Lerp(GameManagerScript.threeCam, GameManagerScript.sixCam, 1f);
-        GameManagerScript.inOne = false;
-        GameManagerScript.inTwo = false;
-        GameManagerScript.inThree = false;
-        GameManagerScript.inFour = false;
-        GameManagerScript.inFive = false;
-        GameManagerScript.inSix = true;
-        GameManagerScript.inBoss = false;
-        GameManagerScript.SpawnVector3 = GameManagerScript.lvlSix;
+        if (GameManagerScript.isAlive == false)
+        {
+            GameManagerScript.cam.transform.position = Vector3.Lerp(GameManagerScript.threeCam, GameManagerScript.sixCam, 1f);
+            GameManagerScript.inOne = false;
+            GameManagerScript.inTwo = false;
+            GameManagerScript.inThree = false;
+            GameManagerScript.inFour = false;
+            GameManagerScript.inFive = false;
+            GameManagerScript.inSix = true;
+            GameManagerScript.inBoss = false;
+            GameManagerScript.SpawnVector3 = GameManagerScript.lvlSix;
+            //Play Sound
+            FindObjectOfType<AudioManager>().PlaySound("CameraTransition", UnityEngine.Random.Range(.90f, 1f));
+        }
+        else
+        {
+            //Play Sound
+            FindObjectOfType<AudioManager>().PlaySound("Denied", UnityEngine.Random.Range(.90f, 1f));
+        }
     }
 
     public void enterLevelBoss()
     {
-        GameManagerScript.cam.transform.position = Vector3.Lerp(GameManagerScript.oneCam, GameManagerScript.bossCam, 1f);
-        GameManagerScript.inOne = false;
-        GameManagerScript.inTwo = false;
-        GameManagerScript.inThree = false;
-        GameManagerScript.inFour = false;
-        GameManagerScript.inFive = false;
-        GameManagerScript.inSix = false;
-        GameManagerScript.inBoss = true;
-        GameManagerScript.SpawnVector3 = GameManagerScript.lvlBoss;
+        if (GameManagerScript.isAlive == false)
+        {
+            GameManagerScript.cam.transform.position = Vector3.Lerp(GameManagerScript.oneCam, GameManagerScript.bossCam, 1f);
+            GameManagerScript.inOne = false;
+            GameManagerScript.inTwo = false;
+            GameManagerScript.inThree = false;
+            GameManagerScript.inFour = false;
+            GameManagerScript.inFive = false;
+            GameManagerScript.inSix = false;
+            GameManagerScript.inBoss = true;
+            GameManagerScript.SpawnVector3 = GameManagerScript.lvlBoss;
+            //Play Sound
+            FindObjectOfType<AudioManager>().PlaySound("CameraTransition", UnityEngine.Random.Range(.90f, 1f));
+        }
+        else
+        {
+            //Play Sound
+            FindObjectOfType<AudioManager>().PlaySound("Denied", UnityEngine.Random.Range(.90f, 1f));
+        }
     }
 }
