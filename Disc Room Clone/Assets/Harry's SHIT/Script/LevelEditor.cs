@@ -29,6 +29,12 @@ public class LevelEditor : MonoBehaviour
     public GameObject down;
     public Sprite downSpriteOpen;
     public Sprite downSpriteLock;
+
+    public GameObject direction_w;
+    public GameObject direction_a;
+    public GameObject direction_s;
+    public GameObject direction_d;
+
     void Start()
     {
         

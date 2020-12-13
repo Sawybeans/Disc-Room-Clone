@@ -65,6 +65,12 @@ public class GameManager : MonoBehaviour
     public Vector3 sixCam;
     public Vector3 bossCam;
 
+    //Sprites
+    public GameObject upSprite;
+    public GameObject leftSprite;
+    public GameObject downSprite;
+    public GameObject rightSprite;
+
     void Start()
     {
         SpawnVector3 = lvlZero;
@@ -124,7 +130,7 @@ public class GameManager : MonoBehaviour
 
         }
 
-        #region conditions for different rooms
+        #region conditions for different rooms 
         //levelZero condition
         if (inZero == true)
         {

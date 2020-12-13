@@ -267,20 +267,20 @@ public class keyboardNavigation : MonoBehaviour
         #endregion
         
         //this is used to unlock the boss room
-        if (timerHighestZero >= 15f &&
-            timerHighestOne >= 15f &&
-            timerHighestTwo >= 15f &&
-            timerHighestThree >= 15f &&
-            timerHighestFour >= 15f &&
-            timerHighestFive >= 15f &&
-            timerHighestSix >= 15f)
+        if (timerHighestZero >= 20f &&
+            timerHighestOne >= 20f &&
+            timerHighestTwo >= 20f &&
+            timerHighestThree >= 20f &&
+            timerHighestFour >= 20f &&
+            timerHighestFive >= 20f &&
+            timerHighestSix >= 20f)
         {
             oneEditor.upLocked = false;
             threeEditor.rightLocked = false;
             fiveEditor.leftLocked = false;
         }
         //win condition
-        if (timerHighestBoss >= 40f)
+        if (timerHighestBoss >= 30f)
         {
             Application.LoadLevel("end screen");
         }
