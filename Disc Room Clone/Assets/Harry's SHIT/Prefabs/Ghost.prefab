@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 3053432751397596363}
   - component: {fileID: 3053432751397596361}
   - component: {fileID: 2952335176577561069}
-  - component: {fileID: 3053432751397596362}
+  - component: {fileID: 3218719634174543428}
   m_Layer: 0
-  m_Name: PlayerPrefab
+  m_Name: Ghost
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3053432751397596367}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f11dab55ce260d54385e98d48fde05e4, type: 3}
   m_Name: 
@@ -52,8 +52,8 @@ MonoBehaviour:
   canPress: 0
   runSpeed: 5
   counter: 0
-  dashSpeeds: 8
-  dashTime: 0.2
+  dashSpeeds: 3.5
+  dashTime: 1
   isDash: 0
   gameManager: {fileID: 0}
   playerAnim: {fileID: 3053432751397596363}
@@ -68,9 +68,9 @@ MonoBehaviour:
   meatPrefab: {fileID: 7991272508538289448, guid: 5b78543e246b06841bc5cbef69c004b9, type: 3}
   veinPrefab: {fileID: 3495096664767761199, guid: 02d65e9979ab8c7429787dcbc6e4587f, type: 3}
   toothPrefab: {fileID: 8481710027237151837, guid: 8945fe703b568314cae5b22eb31096c2, type: 3}
-  ghostPrefab: {fileID: 3053432751397596367, guid: e7e32a22a2b51604fa85924ba4dce78b, type: 3}
+  ghostPrefab: {fileID: 0}
   spawnGhostInterval: 0
-  ghostInterval: 1
+  ghostInterval: 0
 --- !u!212 &3053432751397596366
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -148,7 +148,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3053432751397596367}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -164,7 +164,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3053432751397596367}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -173,24 +173,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.335
---- !u!50 &3053432751397596362
-Rigidbody2D:
-  serializedVersion: 4
+--- !u!114 &3218719634174543428
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3053432751397596367}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4dac5504d5bdf84dad1faedb029cf48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alive: 0
+  playerAnim: {fileID: 3053432751397596363}
+  delayTime: 0.1
+  gSR: {fileID: 3053432751397596366}
+  ghostDelayTime: 0

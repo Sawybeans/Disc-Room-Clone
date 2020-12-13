@@ -35,8 +35,11 @@ public class PlayerControl : MonoBehaviour
     public GameObject meatPrefab;
     public GameObject veinPrefab;
     public GameObject toothPrefab;
-    
-    
+
+    public GameObject ghostPrefab;
+    public float spawnGhostInterval;
+    public float ghostInterval;
+
     //public ParticleSystem bloodBurst;
     void Start()
     {
@@ -63,6 +66,13 @@ public class PlayerControl : MonoBehaviour
                     dashSpeed = dashSpeeds;
                     player.GetComponent<CircleCollider2D>().enabled = false;
                     this.GetComponent<SpriteRenderer>().color = Color.blue;
+
+                    if (ghostInterval >= spawnGhostInterval)
+                    {
+                        Instantiate(ghostPrefab, transform.position, transform.rotation);
+                        ghostInterval = 0;
+                    }
+                    ghostInterval += Time.deltaTime;
                 }
                 else
                 {
@@ -83,7 +93,7 @@ public class PlayerControl : MonoBehaviour
             }
             //Basic player movements, under alive condition
             //UP
-            if (Input.GetKey(KeyCode.UpArrow))
+            if (Input.GetKey(KeyCode.W))
             {
                 //print("UP");
                 playerAnim.SetBool("isUp",true);
@@ -92,7 +102,7 @@ public class PlayerControl : MonoBehaviour
             }
             
             //DOWN
-            if (Input.GetKey(KeyCode.DownArrow))
+            if (Input.GetKey(KeyCode.S))
             {
                 //print("DOWN");
                 playerAnim.SetBool("isDown",true);
@@ -101,7 +111,7 @@ public class PlayerControl : MonoBehaviour
             }
             
             //LEFT
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKey(KeyCode.A))
             {
                 //print("LEFT");
                 playerAnim.SetBool("isLeft",true);
@@ -110,7 +120,7 @@ public class PlayerControl : MonoBehaviour
             }
             
             //RIGHT
-            if (Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKey(KeyCode.D))
             {
                 //print("RIGHT");
                 playerAnim.SetBool("isRight",true);
@@ -120,22 +130,22 @@ public class PlayerControl : MonoBehaviour
             
             
             
-            if (Input.GetKeyUp(KeyCode.UpArrow))
+            if (Input.GetKeyUp(KeyCode.W))
             {
                 playerAnim.SetBool("isUp",false);
                 playerAnim.SetBool("faceUp",true);
             }
-            if (Input.GetKeyUp(KeyCode.DownArrow))
+            if (Input.GetKeyUp(KeyCode.S))
             {
                 playerAnim.SetBool("isDown",false);
                 playerAnim.SetBool("faceDown",true);
             }
-            if (Input.GetKeyUp(KeyCode.LeftArrow))
+            if (Input.GetKeyUp(KeyCode.A))
             {
                 playerAnim.SetBool("isLeft",false);
                 playerAnim.SetBool("faceLeft",true);
             }
-            if (Input.GetKeyUp(KeyCode.RightArrow))
+            if (Input.GetKeyUp(KeyCode.D))
             {
                 playerAnim.SetBool("isRight",false);
                 playerAnim.SetBool("faceRight",true);
